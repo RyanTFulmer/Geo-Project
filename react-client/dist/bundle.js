@@ -63,23 +63,19 @@
 	
 	var _map2 = _interopRequireDefault(_map);
 	
-	var _basicDetails = __webpack_require__(/*! ./components/basicDetails.jsx */ 18);
+	var _basicDetails = __webpack_require__(/*! ./components/basicDetails.jsx */ 52);
 	
 	var _basicDetails2 = _interopRequireDefault(_basicDetails);
 	
-	var _dataSelection = __webpack_require__(/*! ./components/dataSelection.jsx */ 19);
+	var _dataSelection = __webpack_require__(/*! ./components/dataSelection.jsx */ 53);
 	
 	var _dataSelection2 = _interopRequireDefault(_dataSelection);
 	
-	var _PlayButton = __webpack_require__(/*! ./components/PlayButton.jsx */ 82);
-	
-	var _PlayButton2 = _interopRequireDefault(_PlayButton);
-	
-	var _axios = __webpack_require__(/*! axios */ 20);
+	var _axios = __webpack_require__(/*! axios */ 54);
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _state_coordinates = __webpack_require__(/*! ./state_coordinates */ 46);
+	var _state_coordinates = __webpack_require__(/*! ./state_coordinates */ 80);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -29404,11 +29400,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _googleMapReact = __webpack_require__(/*! google-map-react */ 47);
+	var _googleMapReact = __webpack_require__(/*! google-map-react */ 18);
 	
 	var _googleMapReact2 = _interopRequireDefault(_googleMapReact);
 	
-	var _API_KEY = __webpack_require__(/*! ../../../API_KEY */ 80);
+	var _API_KEY = __webpack_require__(/*! ../../../API_KEY */ 51);
 	
 	var _API_KEY2 = _interopRequireDefault(_API_KEY);
 	
@@ -29492,1828 +29488,6 @@
 
 /***/ }),
 /* 18 */
-/*!******************************************************!*\
-  !*** ./react-client/src/components/basicDetails.jsx ***!
-  \******************************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var BasicDetails = function BasicDetails(props) {
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    'Basic Details'
-	  );
-	};
-	exports.default = BasicDetails;
-
-/***/ }),
-/* 19 */
-/*!*******************************************************!*\
-  !*** ./react-client/src/components/dataSelection.jsx ***!
-  \*******************************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var DataSelection = function DataSelection(props) {
-	  console.log('props.state in datadelection', props.state.indexes);
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    'Data Selection',
-	    _react2.default.createElement(
-	      'select',
-	      { onChange: props.handleDataChange },
-	      _react2.default.createElement(
-	        'option',
-	        { value: 'none', selected: true, disabled: true, hidden: true },
-	        'Select an Option'
-	      ),
-	      props.state.indexes.map(function (databaseOption) {
-	        return _react2.default.createElement(
-	          'option',
-	          { value: databaseOption.dataName },
-	          databaseOption.dataName
-	        );
-	      })
-	    )
-	  );
-	};
-	exports.default = DataSelection;
-
-/***/ }),
-/* 20 */
-/*!**************************!*\
-  !*** ./~/axios/index.js ***!
-  \**************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__(/*! ./lib/axios */ 21);
-
-/***/ }),
-/* 21 */
-/*!******************************!*\
-  !*** ./~/axios/lib/axios.js ***!
-  \******************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var utils = __webpack_require__(/*! ./utils */ 22);
-	var bind = __webpack_require__(/*! ./helpers/bind */ 23);
-	var Axios = __webpack_require__(/*! ./core/Axios */ 24);
-	var mergeConfig = __webpack_require__(/*! ./core/mergeConfig */ 42);
-	var defaults = __webpack_require__(/*! ./defaults */ 30);
-	
-	/**
-	 * Create an instance of Axios
-	 *
-	 * @param {Object} defaultConfig The default config for the instance
-	 * @return {Axios} A new instance of Axios
-	 */
-	function createInstance(defaultConfig) {
-	  var context = new Axios(defaultConfig);
-	  var instance = bind(Axios.prototype.request, context);
-	
-	  // Copy axios.prototype to instance
-	  utils.extend(instance, Axios.prototype, context);
-	
-	  // Copy context to instance
-	  utils.extend(instance, context);
-	
-	  return instance;
-	}
-	
-	// Create the default instance to be exported
-	var axios = createInstance(defaults);
-	
-	// Expose Axios class to allow class inheritance
-	axios.Axios = Axios;
-	
-	// Factory for creating new instances
-	axios.create = function create(instanceConfig) {
-	  return createInstance(mergeConfig(axios.defaults, instanceConfig));
-	};
-	
-	// Expose Cancel & CancelToken
-	axios.Cancel = __webpack_require__(/*! ./cancel/Cancel */ 43);
-	axios.CancelToken = __webpack_require__(/*! ./cancel/CancelToken */ 44);
-	axios.isCancel = __webpack_require__(/*! ./cancel/isCancel */ 29);
-	
-	// Expose all/spread
-	axios.all = function all(promises) {
-	  return Promise.all(promises);
-	};
-	axios.spread = __webpack_require__(/*! ./helpers/spread */ 45);
-	
-	module.exports = axios;
-	
-	// Allow use of default import syntax in TypeScript
-	module.exports.default = axios;
-
-
-/***/ }),
-/* 22 */
-/*!******************************!*\
-  !*** ./~/axios/lib/utils.js ***!
-  \******************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var bind = __webpack_require__(/*! ./helpers/bind */ 23);
-	
-	/*global toString:true*/
-	
-	// utils is a library of generic helper functions non-specific to axios
-	
-	var toString = Object.prototype.toString;
-	
-	/**
-	 * Determine if a value is an Array
-	 *
-	 * @param {Object} val The value to test
-	 * @returns {boolean} True if value is an Array, otherwise false
-	 */
-	function isArray(val) {
-	  return toString.call(val) === '[object Array]';
-	}
-	
-	/**
-	 * Determine if a value is undefined
-	 *
-	 * @param {Object} val The value to test
-	 * @returns {boolean} True if the value is undefined, otherwise false
-	 */
-	function isUndefined(val) {
-	  return typeof val === 'undefined';
-	}
-	
-	/**
-	 * Determine if a value is a Buffer
-	 *
-	 * @param {Object} val The value to test
-	 * @returns {boolean} True if value is a Buffer, otherwise false
-	 */
-	function isBuffer(val) {
-	  return val !== null && !isUndefined(val) && val.constructor !== null && !isUndefined(val.constructor)
-	    && typeof val.constructor.isBuffer === 'function' && val.constructor.isBuffer(val);
-	}
-	
-	/**
-	 * Determine if a value is an ArrayBuffer
-	 *
-	 * @param {Object} val The value to test
-	 * @returns {boolean} True if value is an ArrayBuffer, otherwise false
-	 */
-	function isArrayBuffer(val) {
-	  return toString.call(val) === '[object ArrayBuffer]';
-	}
-	
-	/**
-	 * Determine if a value is a FormData
-	 *
-	 * @param {Object} val The value to test
-	 * @returns {boolean} True if value is an FormData, otherwise false
-	 */
-	function isFormData(val) {
-	  return (typeof FormData !== 'undefined') && (val instanceof FormData);
-	}
-	
-	/**
-	 * Determine if a value is a view on an ArrayBuffer
-	 *
-	 * @param {Object} val The value to test
-	 * @returns {boolean} True if value is a view on an ArrayBuffer, otherwise false
-	 */
-	function isArrayBufferView(val) {
-	  var result;
-	  if ((typeof ArrayBuffer !== 'undefined') && (ArrayBuffer.isView)) {
-	    result = ArrayBuffer.isView(val);
-	  } else {
-	    result = (val) && (val.buffer) && (val.buffer instanceof ArrayBuffer);
-	  }
-	  return result;
-	}
-	
-	/**
-	 * Determine if a value is a String
-	 *
-	 * @param {Object} val The value to test
-	 * @returns {boolean} True if value is a String, otherwise false
-	 */
-	function isString(val) {
-	  return typeof val === 'string';
-	}
-	
-	/**
-	 * Determine if a value is a Number
-	 *
-	 * @param {Object} val The value to test
-	 * @returns {boolean} True if value is a Number, otherwise false
-	 */
-	function isNumber(val) {
-	  return typeof val === 'number';
-	}
-	
-	/**
-	 * Determine if a value is an Object
-	 *
-	 * @param {Object} val The value to test
-	 * @returns {boolean} True if value is an Object, otherwise false
-	 */
-	function isObject(val) {
-	  return val !== null && typeof val === 'object';
-	}
-	
-	/**
-	 * Determine if a value is a Date
-	 *
-	 * @param {Object} val The value to test
-	 * @returns {boolean} True if value is a Date, otherwise false
-	 */
-	function isDate(val) {
-	  return toString.call(val) === '[object Date]';
-	}
-	
-	/**
-	 * Determine if a value is a File
-	 *
-	 * @param {Object} val The value to test
-	 * @returns {boolean} True if value is a File, otherwise false
-	 */
-	function isFile(val) {
-	  return toString.call(val) === '[object File]';
-	}
-	
-	/**
-	 * Determine if a value is a Blob
-	 *
-	 * @param {Object} val The value to test
-	 * @returns {boolean} True if value is a Blob, otherwise false
-	 */
-	function isBlob(val) {
-	  return toString.call(val) === '[object Blob]';
-	}
-	
-	/**
-	 * Determine if a value is a Function
-	 *
-	 * @param {Object} val The value to test
-	 * @returns {boolean} True if value is a Function, otherwise false
-	 */
-	function isFunction(val) {
-	  return toString.call(val) === '[object Function]';
-	}
-	
-	/**
-	 * Determine if a value is a Stream
-	 *
-	 * @param {Object} val The value to test
-	 * @returns {boolean} True if value is a Stream, otherwise false
-	 */
-	function isStream(val) {
-	  return isObject(val) && isFunction(val.pipe);
-	}
-	
-	/**
-	 * Determine if a value is a URLSearchParams object
-	 *
-	 * @param {Object} val The value to test
-	 * @returns {boolean} True if value is a URLSearchParams object, otherwise false
-	 */
-	function isURLSearchParams(val) {
-	  return typeof URLSearchParams !== 'undefined' && val instanceof URLSearchParams;
-	}
-	
-	/**
-	 * Trim excess whitespace off the beginning and end of a string
-	 *
-	 * @param {String} str The String to trim
-	 * @returns {String} The String freed of excess whitespace
-	 */
-	function trim(str) {
-	  return str.replace(/^\s*/, '').replace(/\s*$/, '');
-	}
-	
-	/**
-	 * Determine if we're running in a standard browser environment
-	 *
-	 * This allows axios to run in a web worker, and react-native.
-	 * Both environments support XMLHttpRequest, but not fully standard globals.
-	 *
-	 * web workers:
-	 *  typeof window -> undefined
-	 *  typeof document -> undefined
-	 *
-	 * react-native:
-	 *  navigator.product -> 'ReactNative'
-	 * nativescript
-	 *  navigator.product -> 'NativeScript' or 'NS'
-	 */
-	function isStandardBrowserEnv() {
-	  if (typeof navigator !== 'undefined' && (navigator.product === 'ReactNative' ||
-	                                           navigator.product === 'NativeScript' ||
-	                                           navigator.product === 'NS')) {
-	    return false;
-	  }
-	  return (
-	    typeof window !== 'undefined' &&
-	    typeof document !== 'undefined'
-	  );
-	}
-	
-	/**
-	 * Iterate over an Array or an Object invoking a function for each item.
-	 *
-	 * If `obj` is an Array callback will be called passing
-	 * the value, index, and complete array for each item.
-	 *
-	 * If 'obj' is an Object callback will be called passing
-	 * the value, key, and complete object for each property.
-	 *
-	 * @param {Object|Array} obj The object to iterate
-	 * @param {Function} fn The callback to invoke for each item
-	 */
-	function forEach(obj, fn) {
-	  // Don't bother if no value provided
-	  if (obj === null || typeof obj === 'undefined') {
-	    return;
-	  }
-	
-	  // Force an array if not already something iterable
-	  if (typeof obj !== 'object') {
-	    /*eslint no-param-reassign:0*/
-	    obj = [obj];
-	  }
-	
-	  if (isArray(obj)) {
-	    // Iterate over array values
-	    for (var i = 0, l = obj.length; i < l; i++) {
-	      fn.call(null, obj[i], i, obj);
-	    }
-	  } else {
-	    // Iterate over object keys
-	    for (var key in obj) {
-	      if (Object.prototype.hasOwnProperty.call(obj, key)) {
-	        fn.call(null, obj[key], key, obj);
-	      }
-	    }
-	  }
-	}
-	
-	/**
-	 * Accepts varargs expecting each argument to be an object, then
-	 * immutably merges the properties of each object and returns result.
-	 *
-	 * When multiple objects contain the same key the later object in
-	 * the arguments list will take precedence.
-	 *
-	 * Example:
-	 *
-	 * ```js
-	 * var result = merge({foo: 123}, {foo: 456});
-	 * console.log(result.foo); // outputs 456
-	 * ```
-	 *
-	 * @param {Object} obj1 Object to merge
-	 * @returns {Object} Result of all merge properties
-	 */
-	function merge(/* obj1, obj2, obj3, ... */) {
-	  var result = {};
-	  function assignValue(val, key) {
-	    if (typeof result[key] === 'object' && typeof val === 'object') {
-	      result[key] = merge(result[key], val);
-	    } else {
-	      result[key] = val;
-	    }
-	  }
-	
-	  for (var i = 0, l = arguments.length; i < l; i++) {
-	    forEach(arguments[i], assignValue);
-	  }
-	  return result;
-	}
-	
-	/**
-	 * Function equal to merge with the difference being that no reference
-	 * to original objects is kept.
-	 *
-	 * @see merge
-	 * @param {Object} obj1 Object to merge
-	 * @returns {Object} Result of all merge properties
-	 */
-	function deepMerge(/* obj1, obj2, obj3, ... */) {
-	  var result = {};
-	  function assignValue(val, key) {
-	    if (typeof result[key] === 'object' && typeof val === 'object') {
-	      result[key] = deepMerge(result[key], val);
-	    } else if (typeof val === 'object') {
-	      result[key] = deepMerge({}, val);
-	    } else {
-	      result[key] = val;
-	    }
-	  }
-	
-	  for (var i = 0, l = arguments.length; i < l; i++) {
-	    forEach(arguments[i], assignValue);
-	  }
-	  return result;
-	}
-	
-	/**
-	 * Extends object a by mutably adding to it the properties of object b.
-	 *
-	 * @param {Object} a The object to be extended
-	 * @param {Object} b The object to copy properties from
-	 * @param {Object} thisArg The object to bind function to
-	 * @return {Object} The resulting value of object a
-	 */
-	function extend(a, b, thisArg) {
-	  forEach(b, function assignValue(val, key) {
-	    if (thisArg && typeof val === 'function') {
-	      a[key] = bind(val, thisArg);
-	    } else {
-	      a[key] = val;
-	    }
-	  });
-	  return a;
-	}
-	
-	module.exports = {
-	  isArray: isArray,
-	  isArrayBuffer: isArrayBuffer,
-	  isBuffer: isBuffer,
-	  isFormData: isFormData,
-	  isArrayBufferView: isArrayBufferView,
-	  isString: isString,
-	  isNumber: isNumber,
-	  isObject: isObject,
-	  isUndefined: isUndefined,
-	  isDate: isDate,
-	  isFile: isFile,
-	  isBlob: isBlob,
-	  isFunction: isFunction,
-	  isStream: isStream,
-	  isURLSearchParams: isURLSearchParams,
-	  isStandardBrowserEnv: isStandardBrowserEnv,
-	  forEach: forEach,
-	  merge: merge,
-	  deepMerge: deepMerge,
-	  extend: extend,
-	  trim: trim
-	};
-
-
-/***/ }),
-/* 23 */
-/*!*************************************!*\
-  !*** ./~/axios/lib/helpers/bind.js ***!
-  \*************************************/
-/***/ (function(module, exports) {
-
-	'use strict';
-	
-	module.exports = function bind(fn, thisArg) {
-	  return function wrap() {
-	    var args = new Array(arguments.length);
-	    for (var i = 0; i < args.length; i++) {
-	      args[i] = arguments[i];
-	    }
-	    return fn.apply(thisArg, args);
-	  };
-	};
-
-
-/***/ }),
-/* 24 */
-/*!***********************************!*\
-  !*** ./~/axios/lib/core/Axios.js ***!
-  \***********************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var utils = __webpack_require__(/*! ./../utils */ 22);
-	var buildURL = __webpack_require__(/*! ../helpers/buildURL */ 25);
-	var InterceptorManager = __webpack_require__(/*! ./InterceptorManager */ 26);
-	var dispatchRequest = __webpack_require__(/*! ./dispatchRequest */ 27);
-	var mergeConfig = __webpack_require__(/*! ./mergeConfig */ 42);
-	
-	/**
-	 * Create a new instance of Axios
-	 *
-	 * @param {Object} instanceConfig The default config for the instance
-	 */
-	function Axios(instanceConfig) {
-	  this.defaults = instanceConfig;
-	  this.interceptors = {
-	    request: new InterceptorManager(),
-	    response: new InterceptorManager()
-	  };
-	}
-	
-	/**
-	 * Dispatch a request
-	 *
-	 * @param {Object} config The config specific for this request (merged with this.defaults)
-	 */
-	Axios.prototype.request = function request(config) {
-	  /*eslint no-param-reassign:0*/
-	  // Allow for axios('example/url'[, config]) a la fetch API
-	  if (typeof config === 'string') {
-	    config = arguments[1] || {};
-	    config.url = arguments[0];
-	  } else {
-	    config = config || {};
-	  }
-	
-	  config = mergeConfig(this.defaults, config);
-	
-	  // Set config.method
-	  if (config.method) {
-	    config.method = config.method.toLowerCase();
-	  } else if (this.defaults.method) {
-	    config.method = this.defaults.method.toLowerCase();
-	  } else {
-	    config.method = 'get';
-	  }
-	
-	  // Hook up interceptors middleware
-	  var chain = [dispatchRequest, undefined];
-	  var promise = Promise.resolve(config);
-	
-	  this.interceptors.request.forEach(function unshiftRequestInterceptors(interceptor) {
-	    chain.unshift(interceptor.fulfilled, interceptor.rejected);
-	  });
-	
-	  this.interceptors.response.forEach(function pushResponseInterceptors(interceptor) {
-	    chain.push(interceptor.fulfilled, interceptor.rejected);
-	  });
-	
-	  while (chain.length) {
-	    promise = promise.then(chain.shift(), chain.shift());
-	  }
-	
-	  return promise;
-	};
-	
-	Axios.prototype.getUri = function getUri(config) {
-	  config = mergeConfig(this.defaults, config);
-	  return buildURL(config.url, config.params, config.paramsSerializer).replace(/^\?/, '');
-	};
-	
-	// Provide aliases for supported request methods
-	utils.forEach(['delete', 'get', 'head', 'options'], function forEachMethodNoData(method) {
-	  /*eslint func-names:0*/
-	  Axios.prototype[method] = function(url, config) {
-	    return this.request(utils.merge(config || {}, {
-	      method: method,
-	      url: url
-	    }));
-	  };
-	});
-	
-	utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
-	  /*eslint func-names:0*/
-	  Axios.prototype[method] = function(url, data, config) {
-	    return this.request(utils.merge(config || {}, {
-	      method: method,
-	      url: url,
-	      data: data
-	    }));
-	  };
-	});
-	
-	module.exports = Axios;
-
-
-/***/ }),
-/* 25 */
-/*!*****************************************!*\
-  !*** ./~/axios/lib/helpers/buildURL.js ***!
-  \*****************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var utils = __webpack_require__(/*! ./../utils */ 22);
-	
-	function encode(val) {
-	  return encodeURIComponent(val).
-	    replace(/%40/gi, '@').
-	    replace(/%3A/gi, ':').
-	    replace(/%24/g, '$').
-	    replace(/%2C/gi, ',').
-	    replace(/%20/g, '+').
-	    replace(/%5B/gi, '[').
-	    replace(/%5D/gi, ']');
-	}
-	
-	/**
-	 * Build a URL by appending params to the end
-	 *
-	 * @param {string} url The base of the url (e.g., http://www.google.com)
-	 * @param {object} [params] The params to be appended
-	 * @returns {string} The formatted url
-	 */
-	module.exports = function buildURL(url, params, paramsSerializer) {
-	  /*eslint no-param-reassign:0*/
-	  if (!params) {
-	    return url;
-	  }
-	
-	  var serializedParams;
-	  if (paramsSerializer) {
-	    serializedParams = paramsSerializer(params);
-	  } else if (utils.isURLSearchParams(params)) {
-	    serializedParams = params.toString();
-	  } else {
-	    var parts = [];
-	
-	    utils.forEach(params, function serialize(val, key) {
-	      if (val === null || typeof val === 'undefined') {
-	        return;
-	      }
-	
-	      if (utils.isArray(val)) {
-	        key = key + '[]';
-	      } else {
-	        val = [val];
-	      }
-	
-	      utils.forEach(val, function parseValue(v) {
-	        if (utils.isDate(v)) {
-	          v = v.toISOString();
-	        } else if (utils.isObject(v)) {
-	          v = JSON.stringify(v);
-	        }
-	        parts.push(encode(key) + '=' + encode(v));
-	      });
-	    });
-	
-	    serializedParams = parts.join('&');
-	  }
-	
-	  if (serializedParams) {
-	    var hashmarkIndex = url.indexOf('#');
-	    if (hashmarkIndex !== -1) {
-	      url = url.slice(0, hashmarkIndex);
-	    }
-	
-	    url += (url.indexOf('?') === -1 ? '?' : '&') + serializedParams;
-	  }
-	
-	  return url;
-	};
-
-
-/***/ }),
-/* 26 */
-/*!************************************************!*\
-  !*** ./~/axios/lib/core/InterceptorManager.js ***!
-  \************************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var utils = __webpack_require__(/*! ./../utils */ 22);
-	
-	function InterceptorManager() {
-	  this.handlers = [];
-	}
-	
-	/**
-	 * Add a new interceptor to the stack
-	 *
-	 * @param {Function} fulfilled The function to handle `then` for a `Promise`
-	 * @param {Function} rejected The function to handle `reject` for a `Promise`
-	 *
-	 * @return {Number} An ID used to remove interceptor later
-	 */
-	InterceptorManager.prototype.use = function use(fulfilled, rejected) {
-	  this.handlers.push({
-	    fulfilled: fulfilled,
-	    rejected: rejected
-	  });
-	  return this.handlers.length - 1;
-	};
-	
-	/**
-	 * Remove an interceptor from the stack
-	 *
-	 * @param {Number} id The ID that was returned by `use`
-	 */
-	InterceptorManager.prototype.eject = function eject(id) {
-	  if (this.handlers[id]) {
-	    this.handlers[id] = null;
-	  }
-	};
-	
-	/**
-	 * Iterate over all the registered interceptors
-	 *
-	 * This method is particularly useful for skipping over any
-	 * interceptors that may have become `null` calling `eject`.
-	 *
-	 * @param {Function} fn The function to call for each interceptor
-	 */
-	InterceptorManager.prototype.forEach = function forEach(fn) {
-	  utils.forEach(this.handlers, function forEachHandler(h) {
-	    if (h !== null) {
-	      fn(h);
-	    }
-	  });
-	};
-	
-	module.exports = InterceptorManager;
-
-
-/***/ }),
-/* 27 */
-/*!*********************************************!*\
-  !*** ./~/axios/lib/core/dispatchRequest.js ***!
-  \*********************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var utils = __webpack_require__(/*! ./../utils */ 22);
-	var transformData = __webpack_require__(/*! ./transformData */ 28);
-	var isCancel = __webpack_require__(/*! ../cancel/isCancel */ 29);
-	var defaults = __webpack_require__(/*! ../defaults */ 30);
-	
-	/**
-	 * Throws a `Cancel` if cancellation has been requested.
-	 */
-	function throwIfCancellationRequested(config) {
-	  if (config.cancelToken) {
-	    config.cancelToken.throwIfRequested();
-	  }
-	}
-	
-	/**
-	 * Dispatch a request to the server using the configured adapter.
-	 *
-	 * @param {object} config The config that is to be used for the request
-	 * @returns {Promise} The Promise to be fulfilled
-	 */
-	module.exports = function dispatchRequest(config) {
-	  throwIfCancellationRequested(config);
-	
-	  // Ensure headers exist
-	  config.headers = config.headers || {};
-	
-	  // Transform request data
-	  config.data = transformData(
-	    config.data,
-	    config.headers,
-	    config.transformRequest
-	  );
-	
-	  // Flatten headers
-	  config.headers = utils.merge(
-	    config.headers.common || {},
-	    config.headers[config.method] || {},
-	    config.headers
-	  );
-	
-	  utils.forEach(
-	    ['delete', 'get', 'head', 'post', 'put', 'patch', 'common'],
-	    function cleanHeaderConfig(method) {
-	      delete config.headers[method];
-	    }
-	  );
-	
-	  var adapter = config.adapter || defaults.adapter;
-	
-	  return adapter(config).then(function onAdapterResolution(response) {
-	    throwIfCancellationRequested(config);
-	
-	    // Transform response data
-	    response.data = transformData(
-	      response.data,
-	      response.headers,
-	      config.transformResponse
-	    );
-	
-	    return response;
-	  }, function onAdapterRejection(reason) {
-	    if (!isCancel(reason)) {
-	      throwIfCancellationRequested(config);
-	
-	      // Transform response data
-	      if (reason && reason.response) {
-	        reason.response.data = transformData(
-	          reason.response.data,
-	          reason.response.headers,
-	          config.transformResponse
-	        );
-	      }
-	    }
-	
-	    return Promise.reject(reason);
-	  });
-	};
-
-
-/***/ }),
-/* 28 */
-/*!*******************************************!*\
-  !*** ./~/axios/lib/core/transformData.js ***!
-  \*******************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var utils = __webpack_require__(/*! ./../utils */ 22);
-	
-	/**
-	 * Transform the data for a request or a response
-	 *
-	 * @param {Object|String} data The data to be transformed
-	 * @param {Array} headers The headers for the request or response
-	 * @param {Array|Function} fns A single function or Array of functions
-	 * @returns {*} The resulting transformed data
-	 */
-	module.exports = function transformData(data, headers, fns) {
-	  /*eslint no-param-reassign:0*/
-	  utils.forEach(fns, function transform(fn) {
-	    data = fn(data, headers);
-	  });
-	
-	  return data;
-	};
-
-
-/***/ }),
-/* 29 */
-/*!****************************************!*\
-  !*** ./~/axios/lib/cancel/isCancel.js ***!
-  \****************************************/
-/***/ (function(module, exports) {
-
-	'use strict';
-	
-	module.exports = function isCancel(value) {
-	  return !!(value && value.__CANCEL__);
-	};
-
-
-/***/ }),
-/* 30 */
-/*!*********************************!*\
-  !*** ./~/axios/lib/defaults.js ***!
-  \*********************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
-	
-	var utils = __webpack_require__(/*! ./utils */ 22);
-	var normalizeHeaderName = __webpack_require__(/*! ./helpers/normalizeHeaderName */ 31);
-	
-	var DEFAULT_CONTENT_TYPE = {
-	  'Content-Type': 'application/x-www-form-urlencoded'
-	};
-	
-	function setContentTypeIfUnset(headers, value) {
-	  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
-	    headers['Content-Type'] = value;
-	  }
-	}
-	
-	function getDefaultAdapter() {
-	  var adapter;
-	  if (typeof XMLHttpRequest !== 'undefined') {
-	    // For browsers use XHR adapter
-	    adapter = __webpack_require__(/*! ./adapters/xhr */ 32);
-	  } else if (typeof process !== 'undefined' && Object.prototype.toString.call(process) === '[object process]') {
-	    // For node use HTTP adapter
-	    adapter = __webpack_require__(/*! ./adapters/http */ 32);
-	  }
-	  return adapter;
-	}
-	
-	var defaults = {
-	  adapter: getDefaultAdapter(),
-	
-	  transformRequest: [function transformRequest(data, headers) {
-	    normalizeHeaderName(headers, 'Accept');
-	    normalizeHeaderName(headers, 'Content-Type');
-	    if (utils.isFormData(data) ||
-	      utils.isArrayBuffer(data) ||
-	      utils.isBuffer(data) ||
-	      utils.isStream(data) ||
-	      utils.isFile(data) ||
-	      utils.isBlob(data)
-	    ) {
-	      return data;
-	    }
-	    if (utils.isArrayBufferView(data)) {
-	      return data.buffer;
-	    }
-	    if (utils.isURLSearchParams(data)) {
-	      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
-	      return data.toString();
-	    }
-	    if (utils.isObject(data)) {
-	      setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
-	      return JSON.stringify(data);
-	    }
-	    return data;
-	  }],
-	
-	  transformResponse: [function transformResponse(data) {
-	    /*eslint no-param-reassign:0*/
-	    if (typeof data === 'string') {
-	      try {
-	        data = JSON.parse(data);
-	      } catch (e) { /* Ignore */ }
-	    }
-	    return data;
-	  }],
-	
-	  /**
-	   * A timeout in milliseconds to abort a request. If set to 0 (default) a
-	   * timeout is not created.
-	   */
-	  timeout: 0,
-	
-	  xsrfCookieName: 'XSRF-TOKEN',
-	  xsrfHeaderName: 'X-XSRF-TOKEN',
-	
-	  maxContentLength: -1,
-	
-	  validateStatus: function validateStatus(status) {
-	    return status >= 200 && status < 300;
-	  }
-	};
-	
-	defaults.headers = {
-	  common: {
-	    'Accept': 'application/json, text/plain, */*'
-	  }
-	};
-	
-	utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
-	  defaults.headers[method] = {};
-	});
-	
-	utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
-	  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
-	});
-	
-	module.exports = defaults;
-	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../process/browser.js */ 2)))
-
-/***/ }),
-/* 31 */
-/*!****************************************************!*\
-  !*** ./~/axios/lib/helpers/normalizeHeaderName.js ***!
-  \****************************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var utils = __webpack_require__(/*! ../utils */ 22);
-	
-	module.exports = function normalizeHeaderName(headers, normalizedName) {
-	  utils.forEach(headers, function processHeader(value, name) {
-	    if (name !== normalizedName && name.toUpperCase() === normalizedName.toUpperCase()) {
-	      headers[normalizedName] = value;
-	      delete headers[name];
-	    }
-	  });
-	};
-
-
-/***/ }),
-/* 32 */
-/*!*************************************!*\
-  !*** ./~/axios/lib/adapters/xhr.js ***!
-  \*************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var utils = __webpack_require__(/*! ./../utils */ 22);
-	var settle = __webpack_require__(/*! ./../core/settle */ 33);
-	var buildURL = __webpack_require__(/*! ./../helpers/buildURL */ 25);
-	var buildFullPath = __webpack_require__(/*! ../core/buildFullPath */ 36);
-	var parseHeaders = __webpack_require__(/*! ./../helpers/parseHeaders */ 39);
-	var isURLSameOrigin = __webpack_require__(/*! ./../helpers/isURLSameOrigin */ 40);
-	var createError = __webpack_require__(/*! ../core/createError */ 34);
-	
-	module.exports = function xhrAdapter(config) {
-	  return new Promise(function dispatchXhrRequest(resolve, reject) {
-	    var requestData = config.data;
-	    var requestHeaders = config.headers;
-	
-	    if (utils.isFormData(requestData)) {
-	      delete requestHeaders['Content-Type']; // Let the browser set it
-	    }
-	
-	    var request = new XMLHttpRequest();
-	
-	    // HTTP basic authentication
-	    if (config.auth) {
-	      var username = config.auth.username || '';
-	      var password = config.auth.password || '';
-	      requestHeaders.Authorization = 'Basic ' + btoa(username + ':' + password);
-	    }
-	
-	    var fullPath = buildFullPath(config.baseURL, config.url);
-	    request.open(config.method.toUpperCase(), buildURL(fullPath, config.params, config.paramsSerializer), true);
-	
-	    // Set the request timeout in MS
-	    request.timeout = config.timeout;
-	
-	    // Listen for ready state
-	    request.onreadystatechange = function handleLoad() {
-	      if (!request || request.readyState !== 4) {
-	        return;
-	      }
-	
-	      // The request errored out and we didn't get a response, this will be
-	      // handled by onerror instead
-	      // With one exception: request that using file: protocol, most browsers
-	      // will return status as 0 even though it's a successful request
-	      if (request.status === 0 && !(request.responseURL && request.responseURL.indexOf('file:') === 0)) {
-	        return;
-	      }
-	
-	      // Prepare the response
-	      var responseHeaders = 'getAllResponseHeaders' in request ? parseHeaders(request.getAllResponseHeaders()) : null;
-	      var responseData = !config.responseType || config.responseType === 'text' ? request.responseText : request.response;
-	      var response = {
-	        data: responseData,
-	        status: request.status,
-	        statusText: request.statusText,
-	        headers: responseHeaders,
-	        config: config,
-	        request: request
-	      };
-	
-	      settle(resolve, reject, response);
-	
-	      // Clean up request
-	      request = null;
-	    };
-	
-	    // Handle browser request cancellation (as opposed to a manual cancellation)
-	    request.onabort = function handleAbort() {
-	      if (!request) {
-	        return;
-	      }
-	
-	      reject(createError('Request aborted', config, 'ECONNABORTED', request));
-	
-	      // Clean up request
-	      request = null;
-	    };
-	
-	    // Handle low level network errors
-	    request.onerror = function handleError() {
-	      // Real errors are hidden from us by the browser
-	      // onerror should only fire if it's a network error
-	      reject(createError('Network Error', config, null, request));
-	
-	      // Clean up request
-	      request = null;
-	    };
-	
-	    // Handle timeout
-	    request.ontimeout = function handleTimeout() {
-	      var timeoutErrorMessage = 'timeout of ' + config.timeout + 'ms exceeded';
-	      if (config.timeoutErrorMessage) {
-	        timeoutErrorMessage = config.timeoutErrorMessage;
-	      }
-	      reject(createError(timeoutErrorMessage, config, 'ECONNABORTED',
-	        request));
-	
-	      // Clean up request
-	      request = null;
-	    };
-	
-	    // Add xsrf header
-	    // This is only done if running in a standard browser environment.
-	    // Specifically not if we're in a web worker, or react-native.
-	    if (utils.isStandardBrowserEnv()) {
-	      var cookies = __webpack_require__(/*! ./../helpers/cookies */ 41);
-	
-	      // Add xsrf header
-	      var xsrfValue = (config.withCredentials || isURLSameOrigin(fullPath)) && config.xsrfCookieName ?
-	        cookies.read(config.xsrfCookieName) :
-	        undefined;
-	
-	      if (xsrfValue) {
-	        requestHeaders[config.xsrfHeaderName] = xsrfValue;
-	      }
-	    }
-	
-	    // Add headers to the request
-	    if ('setRequestHeader' in request) {
-	      utils.forEach(requestHeaders, function setRequestHeader(val, key) {
-	        if (typeof requestData === 'undefined' && key.toLowerCase() === 'content-type') {
-	          // Remove Content-Type if data is undefined
-	          delete requestHeaders[key];
-	        } else {
-	          // Otherwise add header to the request
-	          request.setRequestHeader(key, val);
-	        }
-	      });
-	    }
-	
-	    // Add withCredentials to request if needed
-	    if (!utils.isUndefined(config.withCredentials)) {
-	      request.withCredentials = !!config.withCredentials;
-	    }
-	
-	    // Add responseType to request if needed
-	    if (config.responseType) {
-	      try {
-	        request.responseType = config.responseType;
-	      } catch (e) {
-	        // Expected DOMException thrown by browsers not compatible XMLHttpRequest Level 2.
-	        // But, this can be suppressed for 'json' type as it can be parsed by default 'transformResponse' function.
-	        if (config.responseType !== 'json') {
-	          throw e;
-	        }
-	      }
-	    }
-	
-	    // Handle progress if needed
-	    if (typeof config.onDownloadProgress === 'function') {
-	      request.addEventListener('progress', config.onDownloadProgress);
-	    }
-	
-	    // Not all browsers support upload events
-	    if (typeof config.onUploadProgress === 'function' && request.upload) {
-	      request.upload.addEventListener('progress', config.onUploadProgress);
-	    }
-	
-	    if (config.cancelToken) {
-	      // Handle cancellation
-	      config.cancelToken.promise.then(function onCanceled(cancel) {
-	        if (!request) {
-	          return;
-	        }
-	
-	        request.abort();
-	        reject(cancel);
-	        // Clean up request
-	        request = null;
-	      });
-	    }
-	
-	    if (requestData === undefined) {
-	      requestData = null;
-	    }
-	
-	    // Send the request
-	    request.send(requestData);
-	  });
-	};
-
-
-/***/ }),
-/* 33 */
-/*!************************************!*\
-  !*** ./~/axios/lib/core/settle.js ***!
-  \************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var createError = __webpack_require__(/*! ./createError */ 34);
-	
-	/**
-	 * Resolve or reject a Promise based on response status.
-	 *
-	 * @param {Function} resolve A function that resolves the promise.
-	 * @param {Function} reject A function that rejects the promise.
-	 * @param {object} response The response.
-	 */
-	module.exports = function settle(resolve, reject, response) {
-	  var validateStatus = response.config.validateStatus;
-	  if (!validateStatus || validateStatus(response.status)) {
-	    resolve(response);
-	  } else {
-	    reject(createError(
-	      'Request failed with status code ' + response.status,
-	      response.config,
-	      null,
-	      response.request,
-	      response
-	    ));
-	  }
-	};
-
-
-/***/ }),
-/* 34 */
-/*!*****************************************!*\
-  !*** ./~/axios/lib/core/createError.js ***!
-  \*****************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var enhanceError = __webpack_require__(/*! ./enhanceError */ 35);
-	
-	/**
-	 * Create an Error with the specified message, config, error code, request and response.
-	 *
-	 * @param {string} message The error message.
-	 * @param {Object} config The config.
-	 * @param {string} [code] The error code (for example, 'ECONNABORTED').
-	 * @param {Object} [request] The request.
-	 * @param {Object} [response] The response.
-	 * @returns {Error} The created error.
-	 */
-	module.exports = function createError(message, config, code, request, response) {
-	  var error = new Error(message);
-	  return enhanceError(error, config, code, request, response);
-	};
-
-
-/***/ }),
-/* 35 */
-/*!******************************************!*\
-  !*** ./~/axios/lib/core/enhanceError.js ***!
-  \******************************************/
-/***/ (function(module, exports) {
-
-	'use strict';
-	
-	/**
-	 * Update an Error with the specified config, error code, and response.
-	 *
-	 * @param {Error} error The error to update.
-	 * @param {Object} config The config.
-	 * @param {string} [code] The error code (for example, 'ECONNABORTED').
-	 * @param {Object} [request] The request.
-	 * @param {Object} [response] The response.
-	 * @returns {Error} The error.
-	 */
-	module.exports = function enhanceError(error, config, code, request, response) {
-	  error.config = config;
-	  if (code) {
-	    error.code = code;
-	  }
-	
-	  error.request = request;
-	  error.response = response;
-	  error.isAxiosError = true;
-	
-	  error.toJSON = function() {
-	    return {
-	      // Standard
-	      message: this.message,
-	      name: this.name,
-	      // Microsoft
-	      description: this.description,
-	      number: this.number,
-	      // Mozilla
-	      fileName: this.fileName,
-	      lineNumber: this.lineNumber,
-	      columnNumber: this.columnNumber,
-	      stack: this.stack,
-	      // Axios
-	      config: this.config,
-	      code: this.code
-	    };
-	  };
-	  return error;
-	};
-
-
-/***/ }),
-/* 36 */
-/*!*******************************************!*\
-  !*** ./~/axios/lib/core/buildFullPath.js ***!
-  \*******************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var isAbsoluteURL = __webpack_require__(/*! ../helpers/isAbsoluteURL */ 37);
-	var combineURLs = __webpack_require__(/*! ../helpers/combineURLs */ 38);
-	
-	/**
-	 * Creates a new URL by combining the baseURL with the requestedURL,
-	 * only when the requestedURL is not already an absolute URL.
-	 * If the requestURL is absolute, this function returns the requestedURL untouched.
-	 *
-	 * @param {string} baseURL The base URL
-	 * @param {string} requestedURL Absolute or relative URL to combine
-	 * @returns {string} The combined full path
-	 */
-	module.exports = function buildFullPath(baseURL, requestedURL) {
-	  if (baseURL && !isAbsoluteURL(requestedURL)) {
-	    return combineURLs(baseURL, requestedURL);
-	  }
-	  return requestedURL;
-	};
-
-
-/***/ }),
-/* 37 */
-/*!**********************************************!*\
-  !*** ./~/axios/lib/helpers/isAbsoluteURL.js ***!
-  \**********************************************/
-/***/ (function(module, exports) {
-
-	'use strict';
-	
-	/**
-	 * Determines whether the specified URL is absolute
-	 *
-	 * @param {string} url The URL to test
-	 * @returns {boolean} True if the specified URL is absolute, otherwise false
-	 */
-	module.exports = function isAbsoluteURL(url) {
-	  // A URL is considered absolute if it begins with "<scheme>://" or "//" (protocol-relative URL).
-	  // RFC 3986 defines scheme name as a sequence of characters beginning with a letter and followed
-	  // by any combination of letters, digits, plus, period, or hyphen.
-	  return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url);
-	};
-
-
-/***/ }),
-/* 38 */
-/*!********************************************!*\
-  !*** ./~/axios/lib/helpers/combineURLs.js ***!
-  \********************************************/
-/***/ (function(module, exports) {
-
-	'use strict';
-	
-	/**
-	 * Creates a new URL by combining the specified URLs
-	 *
-	 * @param {string} baseURL The base URL
-	 * @param {string} relativeURL The relative URL
-	 * @returns {string} The combined URL
-	 */
-	module.exports = function combineURLs(baseURL, relativeURL) {
-	  return relativeURL
-	    ? baseURL.replace(/\/+$/, '') + '/' + relativeURL.replace(/^\/+/, '')
-	    : baseURL;
-	};
-
-
-/***/ }),
-/* 39 */
-/*!*********************************************!*\
-  !*** ./~/axios/lib/helpers/parseHeaders.js ***!
-  \*********************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var utils = __webpack_require__(/*! ./../utils */ 22);
-	
-	// Headers whose duplicates are ignored by node
-	// c.f. https://nodejs.org/api/http.html#http_message_headers
-	var ignoreDuplicateOf = [
-	  'age', 'authorization', 'content-length', 'content-type', 'etag',
-	  'expires', 'from', 'host', 'if-modified-since', 'if-unmodified-since',
-	  'last-modified', 'location', 'max-forwards', 'proxy-authorization',
-	  'referer', 'retry-after', 'user-agent'
-	];
-	
-	/**
-	 * Parse headers into an object
-	 *
-	 * ```
-	 * Date: Wed, 27 Aug 2014 08:58:49 GMT
-	 * Content-Type: application/json
-	 * Connection: keep-alive
-	 * Transfer-Encoding: chunked
-	 * ```
-	 *
-	 * @param {String} headers Headers needing to be parsed
-	 * @returns {Object} Headers parsed into an object
-	 */
-	module.exports = function parseHeaders(headers) {
-	  var parsed = {};
-	  var key;
-	  var val;
-	  var i;
-	
-	  if (!headers) { return parsed; }
-	
-	  utils.forEach(headers.split('\n'), function parser(line) {
-	    i = line.indexOf(':');
-	    key = utils.trim(line.substr(0, i)).toLowerCase();
-	    val = utils.trim(line.substr(i + 1));
-	
-	    if (key) {
-	      if (parsed[key] && ignoreDuplicateOf.indexOf(key) >= 0) {
-	        return;
-	      }
-	      if (key === 'set-cookie') {
-	        parsed[key] = (parsed[key] ? parsed[key] : []).concat([val]);
-	      } else {
-	        parsed[key] = parsed[key] ? parsed[key] + ', ' + val : val;
-	      }
-	    }
-	  });
-	
-	  return parsed;
-	};
-
-
-/***/ }),
-/* 40 */
-/*!************************************************!*\
-  !*** ./~/axios/lib/helpers/isURLSameOrigin.js ***!
-  \************************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var utils = __webpack_require__(/*! ./../utils */ 22);
-	
-	module.exports = (
-	  utils.isStandardBrowserEnv() ?
-	
-	  // Standard browser envs have full support of the APIs needed to test
-	  // whether the request URL is of the same origin as current location.
-	    (function standardBrowserEnv() {
-	      var msie = /(msie|trident)/i.test(navigator.userAgent);
-	      var urlParsingNode = document.createElement('a');
-	      var originURL;
-	
-	      /**
-	    * Parse a URL to discover it's components
-	    *
-	    * @param {String} url The URL to be parsed
-	    * @returns {Object}
-	    */
-	      function resolveURL(url) {
-	        var href = url;
-	
-	        if (msie) {
-	        // IE needs attribute set twice to normalize properties
-	          urlParsingNode.setAttribute('href', href);
-	          href = urlParsingNode.href;
-	        }
-	
-	        urlParsingNode.setAttribute('href', href);
-	
-	        // urlParsingNode provides the UrlUtils interface - http://url.spec.whatwg.org/#urlutils
-	        return {
-	          href: urlParsingNode.href,
-	          protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, '') : '',
-	          host: urlParsingNode.host,
-	          search: urlParsingNode.search ? urlParsingNode.search.replace(/^\?/, '') : '',
-	          hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, '') : '',
-	          hostname: urlParsingNode.hostname,
-	          port: urlParsingNode.port,
-	          pathname: (urlParsingNode.pathname.charAt(0) === '/') ?
-	            urlParsingNode.pathname :
-	            '/' + urlParsingNode.pathname
-	        };
-	      }
-	
-	      originURL = resolveURL(window.location.href);
-	
-	      /**
-	    * Determine if a URL shares the same origin as the current location
-	    *
-	    * @param {String} requestURL The URL to test
-	    * @returns {boolean} True if URL shares the same origin, otherwise false
-	    */
-	      return function isURLSameOrigin(requestURL) {
-	        var parsed = (utils.isString(requestURL)) ? resolveURL(requestURL) : requestURL;
-	        return (parsed.protocol === originURL.protocol &&
-	            parsed.host === originURL.host);
-	      };
-	    })() :
-	
-	  // Non standard browser envs (web workers, react-native) lack needed support.
-	    (function nonStandardBrowserEnv() {
-	      return function isURLSameOrigin() {
-	        return true;
-	      };
-	    })()
-	);
-
-
-/***/ }),
-/* 41 */
-/*!****************************************!*\
-  !*** ./~/axios/lib/helpers/cookies.js ***!
-  \****************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var utils = __webpack_require__(/*! ./../utils */ 22);
-	
-	module.exports = (
-	  utils.isStandardBrowserEnv() ?
-	
-	  // Standard browser envs support document.cookie
-	    (function standardBrowserEnv() {
-	      return {
-	        write: function write(name, value, expires, path, domain, secure) {
-	          var cookie = [];
-	          cookie.push(name + '=' + encodeURIComponent(value));
-	
-	          if (utils.isNumber(expires)) {
-	            cookie.push('expires=' + new Date(expires).toGMTString());
-	          }
-	
-	          if (utils.isString(path)) {
-	            cookie.push('path=' + path);
-	          }
-	
-	          if (utils.isString(domain)) {
-	            cookie.push('domain=' + domain);
-	          }
-	
-	          if (secure === true) {
-	            cookie.push('secure');
-	          }
-	
-	          document.cookie = cookie.join('; ');
-	        },
-	
-	        read: function read(name) {
-	          var match = document.cookie.match(new RegExp('(^|;\\s*)(' + name + ')=([^;]*)'));
-	          return (match ? decodeURIComponent(match[3]) : null);
-	        },
-	
-	        remove: function remove(name) {
-	          this.write(name, '', Date.now() - 86400000);
-	        }
-	      };
-	    })() :
-	
-	  // Non standard browser env (web workers, react-native) lack needed support.
-	    (function nonStandardBrowserEnv() {
-	      return {
-	        write: function write() {},
-	        read: function read() { return null; },
-	        remove: function remove() {}
-	      };
-	    })()
-	);
-
-
-/***/ }),
-/* 42 */
-/*!*****************************************!*\
-  !*** ./~/axios/lib/core/mergeConfig.js ***!
-  \*****************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var utils = __webpack_require__(/*! ../utils */ 22);
-	
-	/**
-	 * Config-specific merge-function which creates a new config-object
-	 * by merging two configuration objects together.
-	 *
-	 * @param {Object} config1
-	 * @param {Object} config2
-	 * @returns {Object} New object resulting from merging config2 to config1
-	 */
-	module.exports = function mergeConfig(config1, config2) {
-	  // eslint-disable-next-line no-param-reassign
-	  config2 = config2 || {};
-	  var config = {};
-	
-	  var valueFromConfig2Keys = ['url', 'method', 'params', 'data'];
-	  var mergeDeepPropertiesKeys = ['headers', 'auth', 'proxy'];
-	  var defaultToConfig2Keys = [
-	    'baseURL', 'url', 'transformRequest', 'transformResponse', 'paramsSerializer',
-	    'timeout', 'withCredentials', 'adapter', 'responseType', 'xsrfCookieName',
-	    'xsrfHeaderName', 'onUploadProgress', 'onDownloadProgress',
-	    'maxContentLength', 'validateStatus', 'maxRedirects', 'httpAgent',
-	    'httpsAgent', 'cancelToken', 'socketPath'
-	  ];
-	
-	  utils.forEach(valueFromConfig2Keys, function valueFromConfig2(prop) {
-	    if (typeof config2[prop] !== 'undefined') {
-	      config[prop] = config2[prop];
-	    }
-	  });
-	
-	  utils.forEach(mergeDeepPropertiesKeys, function mergeDeepProperties(prop) {
-	    if (utils.isObject(config2[prop])) {
-	      config[prop] = utils.deepMerge(config1[prop], config2[prop]);
-	    } else if (typeof config2[prop] !== 'undefined') {
-	      config[prop] = config2[prop];
-	    } else if (utils.isObject(config1[prop])) {
-	      config[prop] = utils.deepMerge(config1[prop]);
-	    } else if (typeof config1[prop] !== 'undefined') {
-	      config[prop] = config1[prop];
-	    }
-	  });
-	
-	  utils.forEach(defaultToConfig2Keys, function defaultToConfig2(prop) {
-	    if (typeof config2[prop] !== 'undefined') {
-	      config[prop] = config2[prop];
-	    } else if (typeof config1[prop] !== 'undefined') {
-	      config[prop] = config1[prop];
-	    }
-	  });
-	
-	  var axiosKeys = valueFromConfig2Keys
-	    .concat(mergeDeepPropertiesKeys)
-	    .concat(defaultToConfig2Keys);
-	
-	  var otherKeys = Object
-	    .keys(config2)
-	    .filter(function filterAxiosKeys(key) {
-	      return axiosKeys.indexOf(key) === -1;
-	    });
-	
-	  utils.forEach(otherKeys, function otherKeysDefaultToConfig2(prop) {
-	    if (typeof config2[prop] !== 'undefined') {
-	      config[prop] = config2[prop];
-	    } else if (typeof config1[prop] !== 'undefined') {
-	      config[prop] = config1[prop];
-	    }
-	  });
-	
-	  return config;
-	};
-
-
-/***/ }),
-/* 43 */
-/*!**************************************!*\
-  !*** ./~/axios/lib/cancel/Cancel.js ***!
-  \**************************************/
-/***/ (function(module, exports) {
-
-	'use strict';
-	
-	/**
-	 * A `Cancel` is an object that is thrown when an operation is canceled.
-	 *
-	 * @class
-	 * @param {string=} message The message.
-	 */
-	function Cancel(message) {
-	  this.message = message;
-	}
-	
-	Cancel.prototype.toString = function toString() {
-	  return 'Cancel' + (this.message ? ': ' + this.message : '');
-	};
-	
-	Cancel.prototype.__CANCEL__ = true;
-	
-	module.exports = Cancel;
-
-
-/***/ }),
-/* 44 */
-/*!*******************************************!*\
-  !*** ./~/axios/lib/cancel/CancelToken.js ***!
-  \*******************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var Cancel = __webpack_require__(/*! ./Cancel */ 43);
-	
-	/**
-	 * A `CancelToken` is an object that can be used to request cancellation of an operation.
-	 *
-	 * @class
-	 * @param {Function} executor The executor function.
-	 */
-	function CancelToken(executor) {
-	  if (typeof executor !== 'function') {
-	    throw new TypeError('executor must be a function.');
-	  }
-	
-	  var resolvePromise;
-	  this.promise = new Promise(function promiseExecutor(resolve) {
-	    resolvePromise = resolve;
-	  });
-	
-	  var token = this;
-	  executor(function cancel(message) {
-	    if (token.reason) {
-	      // Cancellation has already been requested
-	      return;
-	    }
-	
-	    token.reason = new Cancel(message);
-	    resolvePromise(token.reason);
-	  });
-	}
-	
-	/**
-	 * Throws a `Cancel` if cancellation has been requested.
-	 */
-	CancelToken.prototype.throwIfRequested = function throwIfRequested() {
-	  if (this.reason) {
-	    throw this.reason;
-	  }
-	};
-	
-	/**
-	 * Returns an object that contains a new `CancelToken` and a function that, when called,
-	 * cancels the `CancelToken`.
-	 */
-	CancelToken.source = function source() {
-	  var cancel;
-	  var token = new CancelToken(function executor(c) {
-	    cancel = c;
-	  });
-	  return {
-	    token: token,
-	    cancel: cancel
-	  };
-	};
-	
-	module.exports = CancelToken;
-
-
-/***/ }),
-/* 45 */
-/*!***************************************!*\
-  !*** ./~/axios/lib/helpers/spread.js ***!
-  \***************************************/
-/***/ (function(module, exports) {
-
-	'use strict';
-	
-	/**
-	 * Syntactic sugar for invoking a function and expanding an array for arguments.
-	 *
-	 * Common use case would be to use `Function.prototype.apply`.
-	 *
-	 *  ```js
-	 *  function f(x, y, z) {}
-	 *  var args = [1, 2, 3];
-	 *  f.apply(null, args);
-	 *  ```
-	 *
-	 * With `spread` this example can be re-written.
-	 *
-	 *  ```js
-	 *  spread(function(x, y, z) {})([1, 2, 3]);
-	 *  ```
-	 *
-	 * @param {Function} callback
-	 * @returns {Function}
-	 */
-	module.exports = function spread(callback) {
-	  return function wrap(arr) {
-	    return callback.apply(null, arr);
-	  };
-	};
-
-
-/***/ }),
-/* 46 */
-/*!***********************************************!*\
-  !*** ./react-client/src/state_coordinates.js ***!
-  \***********************************************/
-/***/ (function(module, exports) {
-
-	'use strict';
-	
-	module.exports = {
-	  states: [{ name: 'AL', north: 32.7794, west: 86.8287 }, { name: 'AZ', north: 34.2744, west: 111.6602 }, { name: 'AR', north: 34.8938, west: 92.4426 }, { name: 'CA', north: 37.1841, west: 119.4696 }, { name: 'CO', north: 38.9972, west: 105.5478 }, { name: 'CT', north: 41.6219, west: 72.7273 }, { name: 'DE', north: 38.9896, west: 75.505 }, { name: 'DC', north: 38.9101, west: 77.0147 }, { name: 'FL', north: 28.6305, west: 82.4497 }, { name: 'GA', north: 32.6415, west: 83.4426 }, { name: 'ID', north: 44.3509, west: 114.613 }, { name: 'IL', north: 40.0417, west: 89.1965 }, { name: 'IN', north: 39.8942, west: 86.2816 }, { name: 'IA', north: 42.0751, west: 93.496 }, { name: 'KS', north: 38.4937, west: 98.3804 }, { name: 'KY', north: 37.5347, west: 85.3021 }, { name: 'LA', north: 31.0689, west: 91.9968 }, { name: 'ME', north: 45.3695, west: 69.2428 }, { name: 'MD', north: 39.055, west: 76.7909 }, { name: 'MA', north: 42.2596, west: 71.8083 }, { name: 'MI', north: 44.3467, west: 85.4102 }, { name: 'MN', north: 46.2807, west: 94.3053 }, { name: 'MS', north: 32.7364, west: 89.6678 }, { name: 'MO', north: 38.3566, west: 92.458 }, { name: 'MT', north: 47.0527, west: 109.6333 }, { name: 'NE', north: 41.5378, west: 99.7951 }, { name: 'NV', north: 39.3289, west: 116.6312 }, { name: 'NH', north: 43.6805, west: 71.5811 }, { name: 'NJ', north: 40.1907, west: 74.6728 }, { name: 'NM', north: 34.4071, west: 106.1126 }, { name: 'NY', north: 42.9538, west: 75.5268 }, { name: 'NC', north: 35.5557, west: 79.3877 }, { name: 'ND', north: 47.4501, west: 100.4659 }, { name: 'OH', north: 40.2862, west: 82.7937 }, { name: 'OK', north: 35.5889, west: 97.4943 }, { name: 'OR', north: 43.9336, west: 120.5583 }, { name: 'PA', north: 40.8781, west: 77.7996 }, { name: 'RI', north: 41.6762, west: 71.5562 }, { name: 'SC', north: 33.9169, west: 80.8964 }, { name: 'SD', north: 44.4443, west: 100.2263 }, { name: 'TN', north: 35.858, west: 86.3505 }, { name: 'TX', north: 31.4757, west: 99.3312 }, { name: 'UT', north: 39.3055, west: 111.6703 }, { name: 'VT', north: 44.0687, west: 72.6658 }, { name: 'VA', north: 37.5215, west: 78.8537 }, { name: 'WA', north: 47.3826, west: 120.4472 }, { name: 'WV', north: 38.6409, west: 80.6227 }, { name: 'WI', north: 44.6243, west: 89.9941 }, { name: 'WY', north: 42.9957, west: 107.5512 }]
-	};
-
-/***/ }),
-/* 47 */
 /*!*****************************************!*\
   !*** ./~/google-map-react/lib/index.js ***!
   \*****************************************/
@@ -31324,7 +29498,7 @@
 	exports.__esModule = true;
 	exports.default = undefined;
 	
-	var _google_map = __webpack_require__(/*! ./google_map */ 48);
+	var _google_map = __webpack_require__(/*! ./google_map */ 19);
 	
 	var _google_map2 = _interopRequireDefault(_google_map);
 	
@@ -31333,7 +29507,7 @@
 	exports.default = _google_map2.default;
 
 /***/ }),
-/* 48 */
+/* 19 */
 /*!**********************************************!*\
   !*** ./~/google-map-react/lib/google_map.js ***!
   \**********************************************/
@@ -31351,7 +29525,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _propTypes = __webpack_require__(/*! prop-types */ 49);
+	var _propTypes = __webpack_require__(/*! prop-types */ 20);
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
@@ -31359,77 +29533,77 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-	var _google_map_map = __webpack_require__(/*! ./google_map_map */ 55);
+	var _google_map_map = __webpack_require__(/*! ./google_map_map */ 26);
 	
 	var _google_map_map2 = _interopRequireDefault(_google_map_map);
 	
-	var _marker_dispatcher = __webpack_require__(/*! ./marker_dispatcher */ 56);
+	var _marker_dispatcher = __webpack_require__(/*! ./marker_dispatcher */ 27);
 	
 	var _marker_dispatcher2 = _interopRequireDefault(_marker_dispatcher);
 	
-	var _google_map_markers = __webpack_require__(/*! ./google_map_markers */ 58);
+	var _google_map_markers = __webpack_require__(/*! ./google_map_markers */ 29);
 	
 	var _google_map_markers2 = _interopRequireDefault(_google_map_markers);
 	
-	var _google_map_markers_prerender = __webpack_require__(/*! ./google_map_markers_prerender */ 61);
+	var _google_map_markers_prerender = __webpack_require__(/*! ./google_map_markers_prerender */ 32);
 	
 	var _google_map_markers_prerender2 = _interopRequireDefault(_google_map_markers_prerender);
 	
-	var _google_heatmap = __webpack_require__(/*! ./google_heatmap */ 62);
+	var _google_heatmap = __webpack_require__(/*! ./google_heatmap */ 33);
 	
-	var _google_map_loader = __webpack_require__(/*! ./loaders/google_map_loader */ 63);
+	var _google_map_loader = __webpack_require__(/*! ./loaders/google_map_loader */ 34);
 	
 	var _google_map_loader2 = _interopRequireDefault(_google_map_loader);
 	
-	var _geo = __webpack_require__(/*! ./utils/geo */ 65);
+	var _geo = __webpack_require__(/*! ./utils/geo */ 36);
 	
 	var _geo2 = _interopRequireDefault(_geo);
 	
-	var _raf = __webpack_require__(/*! ./utils/raf */ 70);
+	var _raf = __webpack_require__(/*! ./utils/raf */ 41);
 	
 	var _raf2 = _interopRequireDefault(_raf);
 	
-	var _pick = __webpack_require__(/*! ./utils/pick */ 71);
+	var _pick = __webpack_require__(/*! ./utils/pick */ 42);
 	
 	var _pick2 = _interopRequireDefault(_pick);
 	
-	var _omit = __webpack_require__(/*! ./utils/omit */ 59);
+	var _omit = __webpack_require__(/*! ./utils/omit */ 30);
 	
 	var _omit2 = _interopRequireDefault(_omit);
 	
-	var _log = __webpack_require__(/*! ./utils/math/log2 */ 72);
+	var _log = __webpack_require__(/*! ./utils/math/log2 */ 43);
 	
 	var _log2 = _interopRequireDefault(_log);
 	
-	var _isEmpty = __webpack_require__(/*! ./utils/isEmpty */ 73);
+	var _isEmpty = __webpack_require__(/*! ./utils/isEmpty */ 44);
 	
 	var _isEmpty2 = _interopRequireDefault(_isEmpty);
 	
-	var _isNumber = __webpack_require__(/*! ./utils/isNumber */ 74);
+	var _isNumber = __webpack_require__(/*! ./utils/isNumber */ 45);
 	
 	var _isNumber2 = _interopRequireDefault(_isNumber);
 	
-	var _detect = __webpack_require__(/*! ./utils/detect */ 75);
+	var _detect = __webpack_require__(/*! ./utils/detect */ 46);
 	
 	var _detect2 = _interopRequireDefault(_detect);
 	
-	var _shallowEqual = __webpack_require__(/*! ./utils/shallowEqual */ 60);
+	var _shallowEqual = __webpack_require__(/*! ./utils/shallowEqual */ 31);
 	
 	var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
 	
-	var _isPlainObject = __webpack_require__(/*! ./utils/isPlainObject */ 76);
+	var _isPlainObject = __webpack_require__(/*! ./utils/isPlainObject */ 47);
 	
 	var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 	
-	var _isArraysEqualEps = __webpack_require__(/*! ./utils/isArraysEqualEps */ 77);
+	var _isArraysEqualEps = __webpack_require__(/*! ./utils/isArraysEqualEps */ 48);
 	
 	var _isArraysEqualEps2 = _interopRequireDefault(_isArraysEqualEps);
 	
-	var _detectElementResize = __webpack_require__(/*! ./utils/detectElementResize */ 78);
+	var _detectElementResize = __webpack_require__(/*! ./utils/detectElementResize */ 49);
 	
 	var _detectElementResize2 = _interopRequireDefault(_detectElementResize);
 	
-	var _passiveEvents = __webpack_require__(/*! ./utils/passiveEvents */ 79);
+	var _passiveEvents = __webpack_require__(/*! ./utils/passiveEvents */ 50);
 	
 	var _passiveEvents2 = _interopRequireDefault(_passiveEvents);
 	
@@ -32487,7 +30661,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../process/browser.js */ 2)))
 
 /***/ }),
-/* 49 */
+/* 20 */
 /*!*******************************!*\
   !*** ./~/prop-types/index.js ***!
   \*******************************/
@@ -32501,22 +30675,22 @@
 	 */
 	
 	if (process.env.NODE_ENV !== 'production') {
-	  var ReactIs = __webpack_require__(/*! react-is */ 50);
+	  var ReactIs = __webpack_require__(/*! react-is */ 21);
 	
 	  // By explicitly using `prop-types` you are opting into new development behavior.
 	  // http://fb.me/prop-types-in-prod
 	  var throwOnDirectAccess = true;
-	  module.exports = __webpack_require__(/*! ./factoryWithTypeCheckers */ 53)(ReactIs.isElement, throwOnDirectAccess);
+	  module.exports = __webpack_require__(/*! ./factoryWithTypeCheckers */ 24)(ReactIs.isElement, throwOnDirectAccess);
 	} else {
 	  // By explicitly using `prop-types` you are opting into new production behavior.
 	  // http://fb.me/prop-types-in-prod
-	  module.exports = __webpack_require__(/*! ./factoryWithThrowingShims */ 54)();
+	  module.exports = __webpack_require__(/*! ./factoryWithThrowingShims */ 25)();
 	}
 	
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../process/browser.js */ 2)))
 
 /***/ }),
-/* 50 */
+/* 21 */
 /*!*****************************!*\
   !*** ./~/react-is/index.js ***!
   \*****************************/
@@ -32525,15 +30699,15 @@
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 	
 	if (process.env.NODE_ENV === 'production') {
-	  module.exports = __webpack_require__(/*! ./cjs/react-is.production.min.js */ 51);
+	  module.exports = __webpack_require__(/*! ./cjs/react-is.production.min.js */ 22);
 	} else {
-	  module.exports = __webpack_require__(/*! ./cjs/react-is.development.js */ 52);
+	  module.exports = __webpack_require__(/*! ./cjs/react-is.development.js */ 23);
 	}
 	
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../process/browser.js */ 2)))
 
 /***/ }),
-/* 51 */
+/* 22 */
 /*!***************************************************!*\
   !*** ./~/react-is/cjs/react-is.production.min.js ***!
   \***************************************************/
@@ -32557,7 +30731,7 @@
 
 
 /***/ }),
-/* 52 */
+/* 23 */
 /*!************************************************!*\
   !*** ./~/react-is/cjs/react-is.development.js ***!
   \************************************************/
@@ -32748,7 +30922,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../process/browser.js */ 2)))
 
 /***/ }),
-/* 53 */
+/* 24 */
 /*!*************************************************!*\
   !*** ./~/prop-types/factoryWithTypeCheckers.js ***!
   \*************************************************/
@@ -32763,7 +30937,7 @@
 	
 	'use strict';
 	
-	var ReactIs = __webpack_require__(/*! react-is */ 50);
+	var ReactIs = __webpack_require__(/*! react-is */ 21);
 	var assign = __webpack_require__(/*! object-assign */ 4);
 	
 	var ReactPropTypesSecret = __webpack_require__(/*! ./lib/ReactPropTypesSecret */ 7);
@@ -33349,7 +31523,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../process/browser.js */ 2)))
 
 /***/ }),
-/* 54 */
+/* 25 */
 /*!**************************************************!*\
   !*** ./~/prop-types/factoryWithThrowingShims.js ***!
   \**************************************************/
@@ -33422,7 +31596,7 @@
 
 
 /***/ }),
-/* 55 */
+/* 26 */
 /*!**************************************************!*\
   !*** ./~/google-map-react/lib/google_map_map.js ***!
   \**************************************************/
@@ -33479,7 +31653,7 @@
 	exports.default = GoogleMapMap;
 
 /***/ }),
-/* 56 */
+/* 27 */
 /*!*****************************************************!*\
   !*** ./~/google-map-react/lib/marker_dispatcher.js ***!
   \*****************************************************/
@@ -33489,7 +31663,7 @@
 	
 	exports.__esModule = true;
 	
-	var _eventemitter = __webpack_require__(/*! eventemitter3 */ 57);
+	var _eventemitter = __webpack_require__(/*! eventemitter3 */ 28);
 	
 	var _eventemitter2 = _interopRequireDefault(_eventemitter);
 	
@@ -33536,7 +31710,7 @@
 	exports.default = MarkerDispatcher;
 
 /***/ }),
-/* 57 */
+/* 28 */
 /*!**********************************!*\
   !*** ./~/eventemitter3/index.js ***!
   \**********************************/
@@ -33834,7 +32008,7 @@
 
 
 /***/ }),
-/* 58 */
+/* 29 */
 /*!******************************************************!*\
   !*** ./~/google-map-react/lib/google_map_markers.js ***!
   \******************************************************/
@@ -33850,15 +32024,15 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _propTypes = __webpack_require__(/*! prop-types */ 49);
+	var _propTypes = __webpack_require__(/*! prop-types */ 20);
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _omit = __webpack_require__(/*! ./utils/omit */ 59);
+	var _omit = __webpack_require__(/*! ./utils/omit */ 30);
 	
 	var _omit2 = _interopRequireDefault(_omit);
 	
-	var _shallowEqual = __webpack_require__(/*! ./utils/shallowEqual */ 60);
+	var _shallowEqual = __webpack_require__(/*! ./utils/shallowEqual */ 31);
 	
 	var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
 	
@@ -34172,7 +32346,7 @@
 	exports.default = GoogleMapMarkers;
 
 /***/ }),
-/* 59 */
+/* 30 */
 /*!**********************************************!*\
   !*** ./~/google-map-react/lib/utils/omit.js ***!
   \**********************************************/
@@ -34200,7 +32374,7 @@
 	exports.default = omit;
 
 /***/ }),
-/* 60 */
+/* 31 */
 /*!******************************************************!*\
   !*** ./~/google-map-react/lib/utils/shallowEqual.js ***!
   \******************************************************/
@@ -34275,7 +32449,7 @@
 	/* src: https://github.com/facebook/fbjs/blob/master/packages/fbjs/src/core/shallowEqual.js */
 
 /***/ }),
-/* 61 */
+/* 32 */
 /*!****************************************************************!*\
   !*** ./~/google-map-react/lib/google_map_markers_prerender.js ***!
   \****************************************************************/
@@ -34299,7 +32473,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _google_map_markers = __webpack_require__(/*! ./google_map_markers */ 58);
+	var _google_map_markers = __webpack_require__(/*! ./google_map_markers */ 29);
 	
 	var _google_map_markers2 = _interopRequireDefault(_google_map_markers);
 	
@@ -34318,7 +32492,7 @@
 	};
 
 /***/ }),
-/* 62 */
+/* 33 */
 /*!**************************************************!*\
   !*** ./~/google-map-react/lib/google_heatmap.js ***!
   \**************************************************/
@@ -34354,7 +32528,7 @@
 	};
 
 /***/ }),
-/* 63 */
+/* 34 */
 /*!*************************************************************!*\
   !*** ./~/google-map-react/lib/loaders/google_map_loader.js ***!
   \*************************************************************/
@@ -34381,7 +32555,7 @@
 	
 	exports.default = function (bootstrapURLKeys, heatmapLibrary) {
 	  if (!$script_) {
-	    $script_ = __webpack_require__(/*! scriptjs */ 64); // eslint-disable-line
+	    $script_ = __webpack_require__(/*! scriptjs */ 35); // eslint-disable-line
 	  }
 	
 	  // call from outside google-map-react
@@ -34441,7 +32615,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 64 */
+/* 35 */
 /*!***********************************!*\
   !*** ./~/scriptjs/dist/script.js ***!
   \***********************************/
@@ -34574,7 +32748,7 @@
 
 
 /***/ }),
-/* 65 */
+/* 36 */
 /*!*********************************************!*\
   !*** ./~/google-map-react/lib/utils/geo.js ***!
   \*********************************************/
@@ -34586,15 +32760,15 @@
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
-	var _pointGeometry = __webpack_require__(/*! @mapbox/point-geometry */ 66);
+	var _pointGeometry = __webpack_require__(/*! @mapbox/point-geometry */ 37);
 	
 	var _pointGeometry2 = _interopRequireDefault(_pointGeometry);
 	
-	var _lat_lng = __webpack_require__(/*! ./lib_geo/lat_lng */ 67);
+	var _lat_lng = __webpack_require__(/*! ./lib_geo/lat_lng */ 38);
 	
 	var _lat_lng2 = _interopRequireDefault(_lat_lng);
 	
-	var _transform = __webpack_require__(/*! ./lib_geo/transform */ 69);
+	var _transform = __webpack_require__(/*! ./lib_geo/transform */ 40);
 	
 	var _transform2 = _interopRequireDefault(_transform);
 	
@@ -34752,7 +32926,7 @@
 	exports.default = Geo;
 
 /***/ }),
-/* 66 */
+/* 37 */
 /*!*******************************************!*\
   !*** ./~/@mapbox/point-geometry/index.js ***!
   \*******************************************/
@@ -35073,7 +33247,7 @@
 
 
 /***/ }),
-/* 67 */
+/* 38 */
 /*!*********************************************************!*\
   !*** ./~/google-map-react/lib/utils/lib_geo/lat_lng.js ***!
   \*********************************************************/
@@ -35083,7 +33257,7 @@
 	
 	exports.__esModule = true;
 	
-	var _wrap2 = __webpack_require__(/*! ./wrap */ 68);
+	var _wrap2 = __webpack_require__(/*! ./wrap */ 39);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -35124,7 +33298,7 @@
 	exports.default = LatLng;
 
 /***/ }),
-/* 68 */
+/* 39 */
 /*!******************************************************!*\
   !*** ./~/google-map-react/lib/utils/lib_geo/wrap.js ***!
   \******************************************************/
@@ -35142,7 +33316,7 @@
 	}
 
 /***/ }),
-/* 69 */
+/* 40 */
 /*!***********************************************************!*\
   !*** ./~/google-map-react/lib/utils/lib_geo/transform.js ***!
   \***********************************************************/
@@ -35155,15 +33329,15 @@
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /* eslint-disable class-methods-use-this */
 	
 	
-	var _pointGeometry = __webpack_require__(/*! @mapbox/point-geometry */ 66);
+	var _pointGeometry = __webpack_require__(/*! @mapbox/point-geometry */ 37);
 	
 	var _pointGeometry2 = _interopRequireDefault(_pointGeometry);
 	
-	var _lat_lng = __webpack_require__(/*! ./lat_lng */ 67);
+	var _lat_lng = __webpack_require__(/*! ./lat_lng */ 38);
 	
 	var _lat_lng2 = _interopRequireDefault(_lat_lng);
 	
-	var _wrap = __webpack_require__(/*! ./wrap */ 68);
+	var _wrap = __webpack_require__(/*! ./wrap */ 39);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -35312,7 +33486,7 @@
 	exports.default = Transform;
 
 /***/ }),
-/* 70 */
+/* 41 */
 /*!*********************************************!*\
   !*** ./~/google-map-react/lib/utils/raf.js ***!
   \*********************************************/
@@ -35333,7 +33507,7 @@
 	}
 
 /***/ }),
-/* 71 */
+/* 42 */
 /*!**********************************************!*\
   !*** ./~/google-map-react/lib/utils/pick.js ***!
   \**********************************************/
@@ -35355,7 +33529,7 @@
 	}
 
 /***/ }),
-/* 72 */
+/* 43 */
 /*!***************************************************!*\
   !*** ./~/google-map-react/lib/utils/math/log2.js ***!
   \***************************************************/
@@ -35371,7 +33545,7 @@
 	exports.default = log2;
 
 /***/ }),
-/* 73 */
+/* 44 */
 /*!*************************************************!*\
   !*** ./~/google-map-react/lib/utils/isEmpty.js ***!
   \*************************************************/
@@ -35399,7 +33573,7 @@
 	exports.default = isEmpty;
 
 /***/ }),
-/* 74 */
+/* 45 */
 /*!**************************************************!*\
   !*** ./~/google-map-react/lib/utils/isNumber.js ***!
   \**************************************************/
@@ -35424,7 +33598,7 @@
 	}
 
 /***/ }),
-/* 75 */
+/* 46 */
 /*!************************************************!*\
   !*** ./~/google-map-react/lib/utils/detect.js ***!
   \************************************************/
@@ -35480,7 +33654,7 @@
 	}
 
 /***/ }),
-/* 76 */
+/* 47 */
 /*!*******************************************************!*\
   !*** ./~/google-map-react/lib/utils/isPlainObject.js ***!
   \*******************************************************/
@@ -35519,7 +33693,7 @@
 	}
 
 /***/ }),
-/* 77 */
+/* 48 */
 /*!**********************************************************!*\
   !*** ./~/google-map-react/lib/utils/isArraysEqualEps.js ***!
   \**********************************************************/
@@ -35542,7 +33716,7 @@
 	}
 
 /***/ }),
-/* 78 */
+/* 49 */
 /*!*************************************************************!*\
   !*** ./~/google-map-react/lib/utils/detectElementResize.js ***!
   \*************************************************************/
@@ -35550,7 +33724,7 @@
 
 	'use strict';
 	
-	var _passiveEvents = __webpack_require__(/*! ./passiveEvents */ 79);
+	var _passiveEvents = __webpack_require__(/*! ./passiveEvents */ 50);
 	
 	var _passiveEvents2 = _interopRequireDefault(_passiveEvents);
 	
@@ -35730,7 +33904,7 @@
 	};
 
 /***/ }),
-/* 79 */
+/* 50 */
 /*!*******************************************************!*\
   !*** ./~/google-map-react/lib/utils/passiveEvents.js ***!
   \*******************************************************/
@@ -35769,7 +33943,7 @@
 	}
 
 /***/ }),
-/* 80 */
+/* 51 */
 /*!********************!*\
   !*** ./API_KEY.js ***!
   \********************/
@@ -35781,11 +33955,10 @@
 
 
 /***/ }),
-/* 81 */,
-/* 82 */
-/*!****************************************************!*\
-  !*** ./react-client/src/components/PlayButton.jsx ***!
-  \****************************************************/
+/* 52 */
+/*!******************************************************!*\
+  !*** ./react-client/src/components/basicDetails.jsx ***!
+  \******************************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35800,18 +33973,1808 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var PlayButton = function PlayButton(props) {
+	var BasicDetails = function BasicDetails(props) {
 	  return _react2.default.createElement(
 	    'div',
 	    null,
+	    'Basic Details'
+	  );
+	};
+	exports.default = BasicDetails;
+
+/***/ }),
+/* 53 */
+/*!*******************************************************!*\
+  !*** ./react-client/src/components/dataSelection.jsx ***!
+  \*******************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var DataSelection = function DataSelection(props) {
+	  console.log('props.state in datadelection', props.state.indexes);
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    'Data Selection',
 	    _react2.default.createElement(
-	      'button',
-	      { onClick: props.playMap },
-	      'Play!'
+	      'select',
+	      { onChange: props.handleDataChange },
+	      _react2.default.createElement(
+	        'option',
+	        { value: 'none', selected: true, disabled: true, hidden: true },
+	        'Select an Option'
+	      ),
+	      props.state.indexes.map(function (databaseOption) {
+	        return _react2.default.createElement(
+	          'option',
+	          { value: databaseOption.dataName },
+	          databaseOption.dataName
+	        );
+	      })
 	    )
 	  );
 	};
-	exports.default = PlayButton;
+	exports.default = DataSelection;
+
+/***/ }),
+/* 54 */
+/*!**************************!*\
+  !*** ./~/axios/index.js ***!
+  \**************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(/*! ./lib/axios */ 55);
+
+/***/ }),
+/* 55 */
+/*!******************************!*\
+  !*** ./~/axios/lib/axios.js ***!
+  \******************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var utils = __webpack_require__(/*! ./utils */ 56);
+	var bind = __webpack_require__(/*! ./helpers/bind */ 57);
+	var Axios = __webpack_require__(/*! ./core/Axios */ 58);
+	var mergeConfig = __webpack_require__(/*! ./core/mergeConfig */ 76);
+	var defaults = __webpack_require__(/*! ./defaults */ 64);
+	
+	/**
+	 * Create an instance of Axios
+	 *
+	 * @param {Object} defaultConfig The default config for the instance
+	 * @return {Axios} A new instance of Axios
+	 */
+	function createInstance(defaultConfig) {
+	  var context = new Axios(defaultConfig);
+	  var instance = bind(Axios.prototype.request, context);
+	
+	  // Copy axios.prototype to instance
+	  utils.extend(instance, Axios.prototype, context);
+	
+	  // Copy context to instance
+	  utils.extend(instance, context);
+	
+	  return instance;
+	}
+	
+	// Create the default instance to be exported
+	var axios = createInstance(defaults);
+	
+	// Expose Axios class to allow class inheritance
+	axios.Axios = Axios;
+	
+	// Factory for creating new instances
+	axios.create = function create(instanceConfig) {
+	  return createInstance(mergeConfig(axios.defaults, instanceConfig));
+	};
+	
+	// Expose Cancel & CancelToken
+	axios.Cancel = __webpack_require__(/*! ./cancel/Cancel */ 77);
+	axios.CancelToken = __webpack_require__(/*! ./cancel/CancelToken */ 78);
+	axios.isCancel = __webpack_require__(/*! ./cancel/isCancel */ 63);
+	
+	// Expose all/spread
+	axios.all = function all(promises) {
+	  return Promise.all(promises);
+	};
+	axios.spread = __webpack_require__(/*! ./helpers/spread */ 79);
+	
+	module.exports = axios;
+	
+	// Allow use of default import syntax in TypeScript
+	module.exports.default = axios;
+
+
+/***/ }),
+/* 56 */
+/*!******************************!*\
+  !*** ./~/axios/lib/utils.js ***!
+  \******************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var bind = __webpack_require__(/*! ./helpers/bind */ 57);
+	
+	/*global toString:true*/
+	
+	// utils is a library of generic helper functions non-specific to axios
+	
+	var toString = Object.prototype.toString;
+	
+	/**
+	 * Determine if a value is an Array
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is an Array, otherwise false
+	 */
+	function isArray(val) {
+	  return toString.call(val) === '[object Array]';
+	}
+	
+	/**
+	 * Determine if a value is undefined
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if the value is undefined, otherwise false
+	 */
+	function isUndefined(val) {
+	  return typeof val === 'undefined';
+	}
+	
+	/**
+	 * Determine if a value is a Buffer
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a Buffer, otherwise false
+	 */
+	function isBuffer(val) {
+	  return val !== null && !isUndefined(val) && val.constructor !== null && !isUndefined(val.constructor)
+	    && typeof val.constructor.isBuffer === 'function' && val.constructor.isBuffer(val);
+	}
+	
+	/**
+	 * Determine if a value is an ArrayBuffer
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is an ArrayBuffer, otherwise false
+	 */
+	function isArrayBuffer(val) {
+	  return toString.call(val) === '[object ArrayBuffer]';
+	}
+	
+	/**
+	 * Determine if a value is a FormData
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is an FormData, otherwise false
+	 */
+	function isFormData(val) {
+	  return (typeof FormData !== 'undefined') && (val instanceof FormData);
+	}
+	
+	/**
+	 * Determine if a value is a view on an ArrayBuffer
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a view on an ArrayBuffer, otherwise false
+	 */
+	function isArrayBufferView(val) {
+	  var result;
+	  if ((typeof ArrayBuffer !== 'undefined') && (ArrayBuffer.isView)) {
+	    result = ArrayBuffer.isView(val);
+	  } else {
+	    result = (val) && (val.buffer) && (val.buffer instanceof ArrayBuffer);
+	  }
+	  return result;
+	}
+	
+	/**
+	 * Determine if a value is a String
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a String, otherwise false
+	 */
+	function isString(val) {
+	  return typeof val === 'string';
+	}
+	
+	/**
+	 * Determine if a value is a Number
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a Number, otherwise false
+	 */
+	function isNumber(val) {
+	  return typeof val === 'number';
+	}
+	
+	/**
+	 * Determine if a value is an Object
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is an Object, otherwise false
+	 */
+	function isObject(val) {
+	  return val !== null && typeof val === 'object';
+	}
+	
+	/**
+	 * Determine if a value is a Date
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a Date, otherwise false
+	 */
+	function isDate(val) {
+	  return toString.call(val) === '[object Date]';
+	}
+	
+	/**
+	 * Determine if a value is a File
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a File, otherwise false
+	 */
+	function isFile(val) {
+	  return toString.call(val) === '[object File]';
+	}
+	
+	/**
+	 * Determine if a value is a Blob
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a Blob, otherwise false
+	 */
+	function isBlob(val) {
+	  return toString.call(val) === '[object Blob]';
+	}
+	
+	/**
+	 * Determine if a value is a Function
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a Function, otherwise false
+	 */
+	function isFunction(val) {
+	  return toString.call(val) === '[object Function]';
+	}
+	
+	/**
+	 * Determine if a value is a Stream
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a Stream, otherwise false
+	 */
+	function isStream(val) {
+	  return isObject(val) && isFunction(val.pipe);
+	}
+	
+	/**
+	 * Determine if a value is a URLSearchParams object
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a URLSearchParams object, otherwise false
+	 */
+	function isURLSearchParams(val) {
+	  return typeof URLSearchParams !== 'undefined' && val instanceof URLSearchParams;
+	}
+	
+	/**
+	 * Trim excess whitespace off the beginning and end of a string
+	 *
+	 * @param {String} str The String to trim
+	 * @returns {String} The String freed of excess whitespace
+	 */
+	function trim(str) {
+	  return str.replace(/^\s*/, '').replace(/\s*$/, '');
+	}
+	
+	/**
+	 * Determine if we're running in a standard browser environment
+	 *
+	 * This allows axios to run in a web worker, and react-native.
+	 * Both environments support XMLHttpRequest, but not fully standard globals.
+	 *
+	 * web workers:
+	 *  typeof window -> undefined
+	 *  typeof document -> undefined
+	 *
+	 * react-native:
+	 *  navigator.product -> 'ReactNative'
+	 * nativescript
+	 *  navigator.product -> 'NativeScript' or 'NS'
+	 */
+	function isStandardBrowserEnv() {
+	  if (typeof navigator !== 'undefined' && (navigator.product === 'ReactNative' ||
+	                                           navigator.product === 'NativeScript' ||
+	                                           navigator.product === 'NS')) {
+	    return false;
+	  }
+	  return (
+	    typeof window !== 'undefined' &&
+	    typeof document !== 'undefined'
+	  );
+	}
+	
+	/**
+	 * Iterate over an Array or an Object invoking a function for each item.
+	 *
+	 * If `obj` is an Array callback will be called passing
+	 * the value, index, and complete array for each item.
+	 *
+	 * If 'obj' is an Object callback will be called passing
+	 * the value, key, and complete object for each property.
+	 *
+	 * @param {Object|Array} obj The object to iterate
+	 * @param {Function} fn The callback to invoke for each item
+	 */
+	function forEach(obj, fn) {
+	  // Don't bother if no value provided
+	  if (obj === null || typeof obj === 'undefined') {
+	    return;
+	  }
+	
+	  // Force an array if not already something iterable
+	  if (typeof obj !== 'object') {
+	    /*eslint no-param-reassign:0*/
+	    obj = [obj];
+	  }
+	
+	  if (isArray(obj)) {
+	    // Iterate over array values
+	    for (var i = 0, l = obj.length; i < l; i++) {
+	      fn.call(null, obj[i], i, obj);
+	    }
+	  } else {
+	    // Iterate over object keys
+	    for (var key in obj) {
+	      if (Object.prototype.hasOwnProperty.call(obj, key)) {
+	        fn.call(null, obj[key], key, obj);
+	      }
+	    }
+	  }
+	}
+	
+	/**
+	 * Accepts varargs expecting each argument to be an object, then
+	 * immutably merges the properties of each object and returns result.
+	 *
+	 * When multiple objects contain the same key the later object in
+	 * the arguments list will take precedence.
+	 *
+	 * Example:
+	 *
+	 * ```js
+	 * var result = merge({foo: 123}, {foo: 456});
+	 * console.log(result.foo); // outputs 456
+	 * ```
+	 *
+	 * @param {Object} obj1 Object to merge
+	 * @returns {Object} Result of all merge properties
+	 */
+	function merge(/* obj1, obj2, obj3, ... */) {
+	  var result = {};
+	  function assignValue(val, key) {
+	    if (typeof result[key] === 'object' && typeof val === 'object') {
+	      result[key] = merge(result[key], val);
+	    } else {
+	      result[key] = val;
+	    }
+	  }
+	
+	  for (var i = 0, l = arguments.length; i < l; i++) {
+	    forEach(arguments[i], assignValue);
+	  }
+	  return result;
+	}
+	
+	/**
+	 * Function equal to merge with the difference being that no reference
+	 * to original objects is kept.
+	 *
+	 * @see merge
+	 * @param {Object} obj1 Object to merge
+	 * @returns {Object} Result of all merge properties
+	 */
+	function deepMerge(/* obj1, obj2, obj3, ... */) {
+	  var result = {};
+	  function assignValue(val, key) {
+	    if (typeof result[key] === 'object' && typeof val === 'object') {
+	      result[key] = deepMerge(result[key], val);
+	    } else if (typeof val === 'object') {
+	      result[key] = deepMerge({}, val);
+	    } else {
+	      result[key] = val;
+	    }
+	  }
+	
+	  for (var i = 0, l = arguments.length; i < l; i++) {
+	    forEach(arguments[i], assignValue);
+	  }
+	  return result;
+	}
+	
+	/**
+	 * Extends object a by mutably adding to it the properties of object b.
+	 *
+	 * @param {Object} a The object to be extended
+	 * @param {Object} b The object to copy properties from
+	 * @param {Object} thisArg The object to bind function to
+	 * @return {Object} The resulting value of object a
+	 */
+	function extend(a, b, thisArg) {
+	  forEach(b, function assignValue(val, key) {
+	    if (thisArg && typeof val === 'function') {
+	      a[key] = bind(val, thisArg);
+	    } else {
+	      a[key] = val;
+	    }
+	  });
+	  return a;
+	}
+	
+	module.exports = {
+	  isArray: isArray,
+	  isArrayBuffer: isArrayBuffer,
+	  isBuffer: isBuffer,
+	  isFormData: isFormData,
+	  isArrayBufferView: isArrayBufferView,
+	  isString: isString,
+	  isNumber: isNumber,
+	  isObject: isObject,
+	  isUndefined: isUndefined,
+	  isDate: isDate,
+	  isFile: isFile,
+	  isBlob: isBlob,
+	  isFunction: isFunction,
+	  isStream: isStream,
+	  isURLSearchParams: isURLSearchParams,
+	  isStandardBrowserEnv: isStandardBrowserEnv,
+	  forEach: forEach,
+	  merge: merge,
+	  deepMerge: deepMerge,
+	  extend: extend,
+	  trim: trim
+	};
+
+
+/***/ }),
+/* 57 */
+/*!*************************************!*\
+  !*** ./~/axios/lib/helpers/bind.js ***!
+  \*************************************/
+/***/ (function(module, exports) {
+
+	'use strict';
+	
+	module.exports = function bind(fn, thisArg) {
+	  return function wrap() {
+	    var args = new Array(arguments.length);
+	    for (var i = 0; i < args.length; i++) {
+	      args[i] = arguments[i];
+	    }
+	    return fn.apply(thisArg, args);
+	  };
+	};
+
+
+/***/ }),
+/* 58 */
+/*!***********************************!*\
+  !*** ./~/axios/lib/core/Axios.js ***!
+  \***********************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var utils = __webpack_require__(/*! ./../utils */ 56);
+	var buildURL = __webpack_require__(/*! ../helpers/buildURL */ 59);
+	var InterceptorManager = __webpack_require__(/*! ./InterceptorManager */ 60);
+	var dispatchRequest = __webpack_require__(/*! ./dispatchRequest */ 61);
+	var mergeConfig = __webpack_require__(/*! ./mergeConfig */ 76);
+	
+	/**
+	 * Create a new instance of Axios
+	 *
+	 * @param {Object} instanceConfig The default config for the instance
+	 */
+	function Axios(instanceConfig) {
+	  this.defaults = instanceConfig;
+	  this.interceptors = {
+	    request: new InterceptorManager(),
+	    response: new InterceptorManager()
+	  };
+	}
+	
+	/**
+	 * Dispatch a request
+	 *
+	 * @param {Object} config The config specific for this request (merged with this.defaults)
+	 */
+	Axios.prototype.request = function request(config) {
+	  /*eslint no-param-reassign:0*/
+	  // Allow for axios('example/url'[, config]) a la fetch API
+	  if (typeof config === 'string') {
+	    config = arguments[1] || {};
+	    config.url = arguments[0];
+	  } else {
+	    config = config || {};
+	  }
+	
+	  config = mergeConfig(this.defaults, config);
+	
+	  // Set config.method
+	  if (config.method) {
+	    config.method = config.method.toLowerCase();
+	  } else if (this.defaults.method) {
+	    config.method = this.defaults.method.toLowerCase();
+	  } else {
+	    config.method = 'get';
+	  }
+	
+	  // Hook up interceptors middleware
+	  var chain = [dispatchRequest, undefined];
+	  var promise = Promise.resolve(config);
+	
+	  this.interceptors.request.forEach(function unshiftRequestInterceptors(interceptor) {
+	    chain.unshift(interceptor.fulfilled, interceptor.rejected);
+	  });
+	
+	  this.interceptors.response.forEach(function pushResponseInterceptors(interceptor) {
+	    chain.push(interceptor.fulfilled, interceptor.rejected);
+	  });
+	
+	  while (chain.length) {
+	    promise = promise.then(chain.shift(), chain.shift());
+	  }
+	
+	  return promise;
+	};
+	
+	Axios.prototype.getUri = function getUri(config) {
+	  config = mergeConfig(this.defaults, config);
+	  return buildURL(config.url, config.params, config.paramsSerializer).replace(/^\?/, '');
+	};
+	
+	// Provide aliases for supported request methods
+	utils.forEach(['delete', 'get', 'head', 'options'], function forEachMethodNoData(method) {
+	  /*eslint func-names:0*/
+	  Axios.prototype[method] = function(url, config) {
+	    return this.request(utils.merge(config || {}, {
+	      method: method,
+	      url: url
+	    }));
+	  };
+	});
+	
+	utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+	  /*eslint func-names:0*/
+	  Axios.prototype[method] = function(url, data, config) {
+	    return this.request(utils.merge(config || {}, {
+	      method: method,
+	      url: url,
+	      data: data
+	    }));
+	  };
+	});
+	
+	module.exports = Axios;
+
+
+/***/ }),
+/* 59 */
+/*!*****************************************!*\
+  !*** ./~/axios/lib/helpers/buildURL.js ***!
+  \*****************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var utils = __webpack_require__(/*! ./../utils */ 56);
+	
+	function encode(val) {
+	  return encodeURIComponent(val).
+	    replace(/%40/gi, '@').
+	    replace(/%3A/gi, ':').
+	    replace(/%24/g, '$').
+	    replace(/%2C/gi, ',').
+	    replace(/%20/g, '+').
+	    replace(/%5B/gi, '[').
+	    replace(/%5D/gi, ']');
+	}
+	
+	/**
+	 * Build a URL by appending params to the end
+	 *
+	 * @param {string} url The base of the url (e.g., http://www.google.com)
+	 * @param {object} [params] The params to be appended
+	 * @returns {string} The formatted url
+	 */
+	module.exports = function buildURL(url, params, paramsSerializer) {
+	  /*eslint no-param-reassign:0*/
+	  if (!params) {
+	    return url;
+	  }
+	
+	  var serializedParams;
+	  if (paramsSerializer) {
+	    serializedParams = paramsSerializer(params);
+	  } else if (utils.isURLSearchParams(params)) {
+	    serializedParams = params.toString();
+	  } else {
+	    var parts = [];
+	
+	    utils.forEach(params, function serialize(val, key) {
+	      if (val === null || typeof val === 'undefined') {
+	        return;
+	      }
+	
+	      if (utils.isArray(val)) {
+	        key = key + '[]';
+	      } else {
+	        val = [val];
+	      }
+	
+	      utils.forEach(val, function parseValue(v) {
+	        if (utils.isDate(v)) {
+	          v = v.toISOString();
+	        } else if (utils.isObject(v)) {
+	          v = JSON.stringify(v);
+	        }
+	        parts.push(encode(key) + '=' + encode(v));
+	      });
+	    });
+	
+	    serializedParams = parts.join('&');
+	  }
+	
+	  if (serializedParams) {
+	    var hashmarkIndex = url.indexOf('#');
+	    if (hashmarkIndex !== -1) {
+	      url = url.slice(0, hashmarkIndex);
+	    }
+	
+	    url += (url.indexOf('?') === -1 ? '?' : '&') + serializedParams;
+	  }
+	
+	  return url;
+	};
+
+
+/***/ }),
+/* 60 */
+/*!************************************************!*\
+  !*** ./~/axios/lib/core/InterceptorManager.js ***!
+  \************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var utils = __webpack_require__(/*! ./../utils */ 56);
+	
+	function InterceptorManager() {
+	  this.handlers = [];
+	}
+	
+	/**
+	 * Add a new interceptor to the stack
+	 *
+	 * @param {Function} fulfilled The function to handle `then` for a `Promise`
+	 * @param {Function} rejected The function to handle `reject` for a `Promise`
+	 *
+	 * @return {Number} An ID used to remove interceptor later
+	 */
+	InterceptorManager.prototype.use = function use(fulfilled, rejected) {
+	  this.handlers.push({
+	    fulfilled: fulfilled,
+	    rejected: rejected
+	  });
+	  return this.handlers.length - 1;
+	};
+	
+	/**
+	 * Remove an interceptor from the stack
+	 *
+	 * @param {Number} id The ID that was returned by `use`
+	 */
+	InterceptorManager.prototype.eject = function eject(id) {
+	  if (this.handlers[id]) {
+	    this.handlers[id] = null;
+	  }
+	};
+	
+	/**
+	 * Iterate over all the registered interceptors
+	 *
+	 * This method is particularly useful for skipping over any
+	 * interceptors that may have become `null` calling `eject`.
+	 *
+	 * @param {Function} fn The function to call for each interceptor
+	 */
+	InterceptorManager.prototype.forEach = function forEach(fn) {
+	  utils.forEach(this.handlers, function forEachHandler(h) {
+	    if (h !== null) {
+	      fn(h);
+	    }
+	  });
+	};
+	
+	module.exports = InterceptorManager;
+
+
+/***/ }),
+/* 61 */
+/*!*********************************************!*\
+  !*** ./~/axios/lib/core/dispatchRequest.js ***!
+  \*********************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var utils = __webpack_require__(/*! ./../utils */ 56);
+	var transformData = __webpack_require__(/*! ./transformData */ 62);
+	var isCancel = __webpack_require__(/*! ../cancel/isCancel */ 63);
+	var defaults = __webpack_require__(/*! ../defaults */ 64);
+	
+	/**
+	 * Throws a `Cancel` if cancellation has been requested.
+	 */
+	function throwIfCancellationRequested(config) {
+	  if (config.cancelToken) {
+	    config.cancelToken.throwIfRequested();
+	  }
+	}
+	
+	/**
+	 * Dispatch a request to the server using the configured adapter.
+	 *
+	 * @param {object} config The config that is to be used for the request
+	 * @returns {Promise} The Promise to be fulfilled
+	 */
+	module.exports = function dispatchRequest(config) {
+	  throwIfCancellationRequested(config);
+	
+	  // Ensure headers exist
+	  config.headers = config.headers || {};
+	
+	  // Transform request data
+	  config.data = transformData(
+	    config.data,
+	    config.headers,
+	    config.transformRequest
+	  );
+	
+	  // Flatten headers
+	  config.headers = utils.merge(
+	    config.headers.common || {},
+	    config.headers[config.method] || {},
+	    config.headers
+	  );
+	
+	  utils.forEach(
+	    ['delete', 'get', 'head', 'post', 'put', 'patch', 'common'],
+	    function cleanHeaderConfig(method) {
+	      delete config.headers[method];
+	    }
+	  );
+	
+	  var adapter = config.adapter || defaults.adapter;
+	
+	  return adapter(config).then(function onAdapterResolution(response) {
+	    throwIfCancellationRequested(config);
+	
+	    // Transform response data
+	    response.data = transformData(
+	      response.data,
+	      response.headers,
+	      config.transformResponse
+	    );
+	
+	    return response;
+	  }, function onAdapterRejection(reason) {
+	    if (!isCancel(reason)) {
+	      throwIfCancellationRequested(config);
+	
+	      // Transform response data
+	      if (reason && reason.response) {
+	        reason.response.data = transformData(
+	          reason.response.data,
+	          reason.response.headers,
+	          config.transformResponse
+	        );
+	      }
+	    }
+	
+	    return Promise.reject(reason);
+	  });
+	};
+
+
+/***/ }),
+/* 62 */
+/*!*******************************************!*\
+  !*** ./~/axios/lib/core/transformData.js ***!
+  \*******************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var utils = __webpack_require__(/*! ./../utils */ 56);
+	
+	/**
+	 * Transform the data for a request or a response
+	 *
+	 * @param {Object|String} data The data to be transformed
+	 * @param {Array} headers The headers for the request or response
+	 * @param {Array|Function} fns A single function or Array of functions
+	 * @returns {*} The resulting transformed data
+	 */
+	module.exports = function transformData(data, headers, fns) {
+	  /*eslint no-param-reassign:0*/
+	  utils.forEach(fns, function transform(fn) {
+	    data = fn(data, headers);
+	  });
+	
+	  return data;
+	};
+
+
+/***/ }),
+/* 63 */
+/*!****************************************!*\
+  !*** ./~/axios/lib/cancel/isCancel.js ***!
+  \****************************************/
+/***/ (function(module, exports) {
+
+	'use strict';
+	
+	module.exports = function isCancel(value) {
+	  return !!(value && value.__CANCEL__);
+	};
+
+
+/***/ }),
+/* 64 */
+/*!*********************************!*\
+  !*** ./~/axios/lib/defaults.js ***!
+  \*********************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+	
+	var utils = __webpack_require__(/*! ./utils */ 56);
+	var normalizeHeaderName = __webpack_require__(/*! ./helpers/normalizeHeaderName */ 65);
+	
+	var DEFAULT_CONTENT_TYPE = {
+	  'Content-Type': 'application/x-www-form-urlencoded'
+	};
+	
+	function setContentTypeIfUnset(headers, value) {
+	  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
+	    headers['Content-Type'] = value;
+	  }
+	}
+	
+	function getDefaultAdapter() {
+	  var adapter;
+	  if (typeof XMLHttpRequest !== 'undefined') {
+	    // For browsers use XHR adapter
+	    adapter = __webpack_require__(/*! ./adapters/xhr */ 66);
+	  } else if (typeof process !== 'undefined' && Object.prototype.toString.call(process) === '[object process]') {
+	    // For node use HTTP adapter
+	    adapter = __webpack_require__(/*! ./adapters/http */ 66);
+	  }
+	  return adapter;
+	}
+	
+	var defaults = {
+	  adapter: getDefaultAdapter(),
+	
+	  transformRequest: [function transformRequest(data, headers) {
+	    normalizeHeaderName(headers, 'Accept');
+	    normalizeHeaderName(headers, 'Content-Type');
+	    if (utils.isFormData(data) ||
+	      utils.isArrayBuffer(data) ||
+	      utils.isBuffer(data) ||
+	      utils.isStream(data) ||
+	      utils.isFile(data) ||
+	      utils.isBlob(data)
+	    ) {
+	      return data;
+	    }
+	    if (utils.isArrayBufferView(data)) {
+	      return data.buffer;
+	    }
+	    if (utils.isURLSearchParams(data)) {
+	      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
+	      return data.toString();
+	    }
+	    if (utils.isObject(data)) {
+	      setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
+	      return JSON.stringify(data);
+	    }
+	    return data;
+	  }],
+	
+	  transformResponse: [function transformResponse(data) {
+	    /*eslint no-param-reassign:0*/
+	    if (typeof data === 'string') {
+	      try {
+	        data = JSON.parse(data);
+	      } catch (e) { /* Ignore */ }
+	    }
+	    return data;
+	  }],
+	
+	  /**
+	   * A timeout in milliseconds to abort a request. If set to 0 (default) a
+	   * timeout is not created.
+	   */
+	  timeout: 0,
+	
+	  xsrfCookieName: 'XSRF-TOKEN',
+	  xsrfHeaderName: 'X-XSRF-TOKEN',
+	
+	  maxContentLength: -1,
+	
+	  validateStatus: function validateStatus(status) {
+	    return status >= 200 && status < 300;
+	  }
+	};
+	
+	defaults.headers = {
+	  common: {
+	    'Accept': 'application/json, text/plain, */*'
+	  }
+	};
+	
+	utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
+	  defaults.headers[method] = {};
+	});
+	
+	utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+	  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
+	});
+	
+	module.exports = defaults;
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../process/browser.js */ 2)))
+
+/***/ }),
+/* 65 */
+/*!****************************************************!*\
+  !*** ./~/axios/lib/helpers/normalizeHeaderName.js ***!
+  \****************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var utils = __webpack_require__(/*! ../utils */ 56);
+	
+	module.exports = function normalizeHeaderName(headers, normalizedName) {
+	  utils.forEach(headers, function processHeader(value, name) {
+	    if (name !== normalizedName && name.toUpperCase() === normalizedName.toUpperCase()) {
+	      headers[normalizedName] = value;
+	      delete headers[name];
+	    }
+	  });
+	};
+
+
+/***/ }),
+/* 66 */
+/*!*************************************!*\
+  !*** ./~/axios/lib/adapters/xhr.js ***!
+  \*************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var utils = __webpack_require__(/*! ./../utils */ 56);
+	var settle = __webpack_require__(/*! ./../core/settle */ 67);
+	var buildURL = __webpack_require__(/*! ./../helpers/buildURL */ 59);
+	var buildFullPath = __webpack_require__(/*! ../core/buildFullPath */ 70);
+	var parseHeaders = __webpack_require__(/*! ./../helpers/parseHeaders */ 73);
+	var isURLSameOrigin = __webpack_require__(/*! ./../helpers/isURLSameOrigin */ 74);
+	var createError = __webpack_require__(/*! ../core/createError */ 68);
+	
+	module.exports = function xhrAdapter(config) {
+	  return new Promise(function dispatchXhrRequest(resolve, reject) {
+	    var requestData = config.data;
+	    var requestHeaders = config.headers;
+	
+	    if (utils.isFormData(requestData)) {
+	      delete requestHeaders['Content-Type']; // Let the browser set it
+	    }
+	
+	    var request = new XMLHttpRequest();
+	
+	    // HTTP basic authentication
+	    if (config.auth) {
+	      var username = config.auth.username || '';
+	      var password = config.auth.password || '';
+	      requestHeaders.Authorization = 'Basic ' + btoa(username + ':' + password);
+	    }
+	
+	    var fullPath = buildFullPath(config.baseURL, config.url);
+	    request.open(config.method.toUpperCase(), buildURL(fullPath, config.params, config.paramsSerializer), true);
+	
+	    // Set the request timeout in MS
+	    request.timeout = config.timeout;
+	
+	    // Listen for ready state
+	    request.onreadystatechange = function handleLoad() {
+	      if (!request || request.readyState !== 4) {
+	        return;
+	      }
+	
+	      // The request errored out and we didn't get a response, this will be
+	      // handled by onerror instead
+	      // With one exception: request that using file: protocol, most browsers
+	      // will return status as 0 even though it's a successful request
+	      if (request.status === 0 && !(request.responseURL && request.responseURL.indexOf('file:') === 0)) {
+	        return;
+	      }
+	
+	      // Prepare the response
+	      var responseHeaders = 'getAllResponseHeaders' in request ? parseHeaders(request.getAllResponseHeaders()) : null;
+	      var responseData = !config.responseType || config.responseType === 'text' ? request.responseText : request.response;
+	      var response = {
+	        data: responseData,
+	        status: request.status,
+	        statusText: request.statusText,
+	        headers: responseHeaders,
+	        config: config,
+	        request: request
+	      };
+	
+	      settle(resolve, reject, response);
+	
+	      // Clean up request
+	      request = null;
+	    };
+	
+	    // Handle browser request cancellation (as opposed to a manual cancellation)
+	    request.onabort = function handleAbort() {
+	      if (!request) {
+	        return;
+	      }
+	
+	      reject(createError('Request aborted', config, 'ECONNABORTED', request));
+	
+	      // Clean up request
+	      request = null;
+	    };
+	
+	    // Handle low level network errors
+	    request.onerror = function handleError() {
+	      // Real errors are hidden from us by the browser
+	      // onerror should only fire if it's a network error
+	      reject(createError('Network Error', config, null, request));
+	
+	      // Clean up request
+	      request = null;
+	    };
+	
+	    // Handle timeout
+	    request.ontimeout = function handleTimeout() {
+	      var timeoutErrorMessage = 'timeout of ' + config.timeout + 'ms exceeded';
+	      if (config.timeoutErrorMessage) {
+	        timeoutErrorMessage = config.timeoutErrorMessage;
+	      }
+	      reject(createError(timeoutErrorMessage, config, 'ECONNABORTED',
+	        request));
+	
+	      // Clean up request
+	      request = null;
+	    };
+	
+	    // Add xsrf header
+	    // This is only done if running in a standard browser environment.
+	    // Specifically not if we're in a web worker, or react-native.
+	    if (utils.isStandardBrowserEnv()) {
+	      var cookies = __webpack_require__(/*! ./../helpers/cookies */ 75);
+	
+	      // Add xsrf header
+	      var xsrfValue = (config.withCredentials || isURLSameOrigin(fullPath)) && config.xsrfCookieName ?
+	        cookies.read(config.xsrfCookieName) :
+	        undefined;
+	
+	      if (xsrfValue) {
+	        requestHeaders[config.xsrfHeaderName] = xsrfValue;
+	      }
+	    }
+	
+	    // Add headers to the request
+	    if ('setRequestHeader' in request) {
+	      utils.forEach(requestHeaders, function setRequestHeader(val, key) {
+	        if (typeof requestData === 'undefined' && key.toLowerCase() === 'content-type') {
+	          // Remove Content-Type if data is undefined
+	          delete requestHeaders[key];
+	        } else {
+	          // Otherwise add header to the request
+	          request.setRequestHeader(key, val);
+	        }
+	      });
+	    }
+	
+	    // Add withCredentials to request if needed
+	    if (!utils.isUndefined(config.withCredentials)) {
+	      request.withCredentials = !!config.withCredentials;
+	    }
+	
+	    // Add responseType to request if needed
+	    if (config.responseType) {
+	      try {
+	        request.responseType = config.responseType;
+	      } catch (e) {
+	        // Expected DOMException thrown by browsers not compatible XMLHttpRequest Level 2.
+	        // But, this can be suppressed for 'json' type as it can be parsed by default 'transformResponse' function.
+	        if (config.responseType !== 'json') {
+	          throw e;
+	        }
+	      }
+	    }
+	
+	    // Handle progress if needed
+	    if (typeof config.onDownloadProgress === 'function') {
+	      request.addEventListener('progress', config.onDownloadProgress);
+	    }
+	
+	    // Not all browsers support upload events
+	    if (typeof config.onUploadProgress === 'function' && request.upload) {
+	      request.upload.addEventListener('progress', config.onUploadProgress);
+	    }
+	
+	    if (config.cancelToken) {
+	      // Handle cancellation
+	      config.cancelToken.promise.then(function onCanceled(cancel) {
+	        if (!request) {
+	          return;
+	        }
+	
+	        request.abort();
+	        reject(cancel);
+	        // Clean up request
+	        request = null;
+	      });
+	    }
+	
+	    if (requestData === undefined) {
+	      requestData = null;
+	    }
+	
+	    // Send the request
+	    request.send(requestData);
+	  });
+	};
+
+
+/***/ }),
+/* 67 */
+/*!************************************!*\
+  !*** ./~/axios/lib/core/settle.js ***!
+  \************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var createError = __webpack_require__(/*! ./createError */ 68);
+	
+	/**
+	 * Resolve or reject a Promise based on response status.
+	 *
+	 * @param {Function} resolve A function that resolves the promise.
+	 * @param {Function} reject A function that rejects the promise.
+	 * @param {object} response The response.
+	 */
+	module.exports = function settle(resolve, reject, response) {
+	  var validateStatus = response.config.validateStatus;
+	  if (!validateStatus || validateStatus(response.status)) {
+	    resolve(response);
+	  } else {
+	    reject(createError(
+	      'Request failed with status code ' + response.status,
+	      response.config,
+	      null,
+	      response.request,
+	      response
+	    ));
+	  }
+	};
+
+
+/***/ }),
+/* 68 */
+/*!*****************************************!*\
+  !*** ./~/axios/lib/core/createError.js ***!
+  \*****************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var enhanceError = __webpack_require__(/*! ./enhanceError */ 69);
+	
+	/**
+	 * Create an Error with the specified message, config, error code, request and response.
+	 *
+	 * @param {string} message The error message.
+	 * @param {Object} config The config.
+	 * @param {string} [code] The error code (for example, 'ECONNABORTED').
+	 * @param {Object} [request] The request.
+	 * @param {Object} [response] The response.
+	 * @returns {Error} The created error.
+	 */
+	module.exports = function createError(message, config, code, request, response) {
+	  var error = new Error(message);
+	  return enhanceError(error, config, code, request, response);
+	};
+
+
+/***/ }),
+/* 69 */
+/*!******************************************!*\
+  !*** ./~/axios/lib/core/enhanceError.js ***!
+  \******************************************/
+/***/ (function(module, exports) {
+
+	'use strict';
+	
+	/**
+	 * Update an Error with the specified config, error code, and response.
+	 *
+	 * @param {Error} error The error to update.
+	 * @param {Object} config The config.
+	 * @param {string} [code] The error code (for example, 'ECONNABORTED').
+	 * @param {Object} [request] The request.
+	 * @param {Object} [response] The response.
+	 * @returns {Error} The error.
+	 */
+	module.exports = function enhanceError(error, config, code, request, response) {
+	  error.config = config;
+	  if (code) {
+	    error.code = code;
+	  }
+	
+	  error.request = request;
+	  error.response = response;
+	  error.isAxiosError = true;
+	
+	  error.toJSON = function() {
+	    return {
+	      // Standard
+	      message: this.message,
+	      name: this.name,
+	      // Microsoft
+	      description: this.description,
+	      number: this.number,
+	      // Mozilla
+	      fileName: this.fileName,
+	      lineNumber: this.lineNumber,
+	      columnNumber: this.columnNumber,
+	      stack: this.stack,
+	      // Axios
+	      config: this.config,
+	      code: this.code
+	    };
+	  };
+	  return error;
+	};
+
+
+/***/ }),
+/* 70 */
+/*!*******************************************!*\
+  !*** ./~/axios/lib/core/buildFullPath.js ***!
+  \*******************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var isAbsoluteURL = __webpack_require__(/*! ../helpers/isAbsoluteURL */ 71);
+	var combineURLs = __webpack_require__(/*! ../helpers/combineURLs */ 72);
+	
+	/**
+	 * Creates a new URL by combining the baseURL with the requestedURL,
+	 * only when the requestedURL is not already an absolute URL.
+	 * If the requestURL is absolute, this function returns the requestedURL untouched.
+	 *
+	 * @param {string} baseURL The base URL
+	 * @param {string} requestedURL Absolute or relative URL to combine
+	 * @returns {string} The combined full path
+	 */
+	module.exports = function buildFullPath(baseURL, requestedURL) {
+	  if (baseURL && !isAbsoluteURL(requestedURL)) {
+	    return combineURLs(baseURL, requestedURL);
+	  }
+	  return requestedURL;
+	};
+
+
+/***/ }),
+/* 71 */
+/*!**********************************************!*\
+  !*** ./~/axios/lib/helpers/isAbsoluteURL.js ***!
+  \**********************************************/
+/***/ (function(module, exports) {
+
+	'use strict';
+	
+	/**
+	 * Determines whether the specified URL is absolute
+	 *
+	 * @param {string} url The URL to test
+	 * @returns {boolean} True if the specified URL is absolute, otherwise false
+	 */
+	module.exports = function isAbsoluteURL(url) {
+	  // A URL is considered absolute if it begins with "<scheme>://" or "//" (protocol-relative URL).
+	  // RFC 3986 defines scheme name as a sequence of characters beginning with a letter and followed
+	  // by any combination of letters, digits, plus, period, or hyphen.
+	  return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url);
+	};
+
+
+/***/ }),
+/* 72 */
+/*!********************************************!*\
+  !*** ./~/axios/lib/helpers/combineURLs.js ***!
+  \********************************************/
+/***/ (function(module, exports) {
+
+	'use strict';
+	
+	/**
+	 * Creates a new URL by combining the specified URLs
+	 *
+	 * @param {string} baseURL The base URL
+	 * @param {string} relativeURL The relative URL
+	 * @returns {string} The combined URL
+	 */
+	module.exports = function combineURLs(baseURL, relativeURL) {
+	  return relativeURL
+	    ? baseURL.replace(/\/+$/, '') + '/' + relativeURL.replace(/^\/+/, '')
+	    : baseURL;
+	};
+
+
+/***/ }),
+/* 73 */
+/*!*********************************************!*\
+  !*** ./~/axios/lib/helpers/parseHeaders.js ***!
+  \*********************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var utils = __webpack_require__(/*! ./../utils */ 56);
+	
+	// Headers whose duplicates are ignored by node
+	// c.f. https://nodejs.org/api/http.html#http_message_headers
+	var ignoreDuplicateOf = [
+	  'age', 'authorization', 'content-length', 'content-type', 'etag',
+	  'expires', 'from', 'host', 'if-modified-since', 'if-unmodified-since',
+	  'last-modified', 'location', 'max-forwards', 'proxy-authorization',
+	  'referer', 'retry-after', 'user-agent'
+	];
+	
+	/**
+	 * Parse headers into an object
+	 *
+	 * ```
+	 * Date: Wed, 27 Aug 2014 08:58:49 GMT
+	 * Content-Type: application/json
+	 * Connection: keep-alive
+	 * Transfer-Encoding: chunked
+	 * ```
+	 *
+	 * @param {String} headers Headers needing to be parsed
+	 * @returns {Object} Headers parsed into an object
+	 */
+	module.exports = function parseHeaders(headers) {
+	  var parsed = {};
+	  var key;
+	  var val;
+	  var i;
+	
+	  if (!headers) { return parsed; }
+	
+	  utils.forEach(headers.split('\n'), function parser(line) {
+	    i = line.indexOf(':');
+	    key = utils.trim(line.substr(0, i)).toLowerCase();
+	    val = utils.trim(line.substr(i + 1));
+	
+	    if (key) {
+	      if (parsed[key] && ignoreDuplicateOf.indexOf(key) >= 0) {
+	        return;
+	      }
+	      if (key === 'set-cookie') {
+	        parsed[key] = (parsed[key] ? parsed[key] : []).concat([val]);
+	      } else {
+	        parsed[key] = parsed[key] ? parsed[key] + ', ' + val : val;
+	      }
+	    }
+	  });
+	
+	  return parsed;
+	};
+
+
+/***/ }),
+/* 74 */
+/*!************************************************!*\
+  !*** ./~/axios/lib/helpers/isURLSameOrigin.js ***!
+  \************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var utils = __webpack_require__(/*! ./../utils */ 56);
+	
+	module.exports = (
+	  utils.isStandardBrowserEnv() ?
+	
+	  // Standard browser envs have full support of the APIs needed to test
+	  // whether the request URL is of the same origin as current location.
+	    (function standardBrowserEnv() {
+	      var msie = /(msie|trident)/i.test(navigator.userAgent);
+	      var urlParsingNode = document.createElement('a');
+	      var originURL;
+	
+	      /**
+	    * Parse a URL to discover it's components
+	    *
+	    * @param {String} url The URL to be parsed
+	    * @returns {Object}
+	    */
+	      function resolveURL(url) {
+	        var href = url;
+	
+	        if (msie) {
+	        // IE needs attribute set twice to normalize properties
+	          urlParsingNode.setAttribute('href', href);
+	          href = urlParsingNode.href;
+	        }
+	
+	        urlParsingNode.setAttribute('href', href);
+	
+	        // urlParsingNode provides the UrlUtils interface - http://url.spec.whatwg.org/#urlutils
+	        return {
+	          href: urlParsingNode.href,
+	          protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, '') : '',
+	          host: urlParsingNode.host,
+	          search: urlParsingNode.search ? urlParsingNode.search.replace(/^\?/, '') : '',
+	          hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, '') : '',
+	          hostname: urlParsingNode.hostname,
+	          port: urlParsingNode.port,
+	          pathname: (urlParsingNode.pathname.charAt(0) === '/') ?
+	            urlParsingNode.pathname :
+	            '/' + urlParsingNode.pathname
+	        };
+	      }
+	
+	      originURL = resolveURL(window.location.href);
+	
+	      /**
+	    * Determine if a URL shares the same origin as the current location
+	    *
+	    * @param {String} requestURL The URL to test
+	    * @returns {boolean} True if URL shares the same origin, otherwise false
+	    */
+	      return function isURLSameOrigin(requestURL) {
+	        var parsed = (utils.isString(requestURL)) ? resolveURL(requestURL) : requestURL;
+	        return (parsed.protocol === originURL.protocol &&
+	            parsed.host === originURL.host);
+	      };
+	    })() :
+	
+	  // Non standard browser envs (web workers, react-native) lack needed support.
+	    (function nonStandardBrowserEnv() {
+	      return function isURLSameOrigin() {
+	        return true;
+	      };
+	    })()
+	);
+
+
+/***/ }),
+/* 75 */
+/*!****************************************!*\
+  !*** ./~/axios/lib/helpers/cookies.js ***!
+  \****************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var utils = __webpack_require__(/*! ./../utils */ 56);
+	
+	module.exports = (
+	  utils.isStandardBrowserEnv() ?
+	
+	  // Standard browser envs support document.cookie
+	    (function standardBrowserEnv() {
+	      return {
+	        write: function write(name, value, expires, path, domain, secure) {
+	          var cookie = [];
+	          cookie.push(name + '=' + encodeURIComponent(value));
+	
+	          if (utils.isNumber(expires)) {
+	            cookie.push('expires=' + new Date(expires).toGMTString());
+	          }
+	
+	          if (utils.isString(path)) {
+	            cookie.push('path=' + path);
+	          }
+	
+	          if (utils.isString(domain)) {
+	            cookie.push('domain=' + domain);
+	          }
+	
+	          if (secure === true) {
+	            cookie.push('secure');
+	          }
+	
+	          document.cookie = cookie.join('; ');
+	        },
+	
+	        read: function read(name) {
+	          var match = document.cookie.match(new RegExp('(^|;\\s*)(' + name + ')=([^;]*)'));
+	          return (match ? decodeURIComponent(match[3]) : null);
+	        },
+	
+	        remove: function remove(name) {
+	          this.write(name, '', Date.now() - 86400000);
+	        }
+	      };
+	    })() :
+	
+	  // Non standard browser env (web workers, react-native) lack needed support.
+	    (function nonStandardBrowserEnv() {
+	      return {
+	        write: function write() {},
+	        read: function read() { return null; },
+	        remove: function remove() {}
+	      };
+	    })()
+	);
+
+
+/***/ }),
+/* 76 */
+/*!*****************************************!*\
+  !*** ./~/axios/lib/core/mergeConfig.js ***!
+  \*****************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var utils = __webpack_require__(/*! ../utils */ 56);
+	
+	/**
+	 * Config-specific merge-function which creates a new config-object
+	 * by merging two configuration objects together.
+	 *
+	 * @param {Object} config1
+	 * @param {Object} config2
+	 * @returns {Object} New object resulting from merging config2 to config1
+	 */
+	module.exports = function mergeConfig(config1, config2) {
+	  // eslint-disable-next-line no-param-reassign
+	  config2 = config2 || {};
+	  var config = {};
+	
+	  var valueFromConfig2Keys = ['url', 'method', 'params', 'data'];
+	  var mergeDeepPropertiesKeys = ['headers', 'auth', 'proxy'];
+	  var defaultToConfig2Keys = [
+	    'baseURL', 'url', 'transformRequest', 'transformResponse', 'paramsSerializer',
+	    'timeout', 'withCredentials', 'adapter', 'responseType', 'xsrfCookieName',
+	    'xsrfHeaderName', 'onUploadProgress', 'onDownloadProgress',
+	    'maxContentLength', 'validateStatus', 'maxRedirects', 'httpAgent',
+	    'httpsAgent', 'cancelToken', 'socketPath'
+	  ];
+	
+	  utils.forEach(valueFromConfig2Keys, function valueFromConfig2(prop) {
+	    if (typeof config2[prop] !== 'undefined') {
+	      config[prop] = config2[prop];
+	    }
+	  });
+	
+	  utils.forEach(mergeDeepPropertiesKeys, function mergeDeepProperties(prop) {
+	    if (utils.isObject(config2[prop])) {
+	      config[prop] = utils.deepMerge(config1[prop], config2[prop]);
+	    } else if (typeof config2[prop] !== 'undefined') {
+	      config[prop] = config2[prop];
+	    } else if (utils.isObject(config1[prop])) {
+	      config[prop] = utils.deepMerge(config1[prop]);
+	    } else if (typeof config1[prop] !== 'undefined') {
+	      config[prop] = config1[prop];
+	    }
+	  });
+	
+	  utils.forEach(defaultToConfig2Keys, function defaultToConfig2(prop) {
+	    if (typeof config2[prop] !== 'undefined') {
+	      config[prop] = config2[prop];
+	    } else if (typeof config1[prop] !== 'undefined') {
+	      config[prop] = config1[prop];
+	    }
+	  });
+	
+	  var axiosKeys = valueFromConfig2Keys
+	    .concat(mergeDeepPropertiesKeys)
+	    .concat(defaultToConfig2Keys);
+	
+	  var otherKeys = Object
+	    .keys(config2)
+	    .filter(function filterAxiosKeys(key) {
+	      return axiosKeys.indexOf(key) === -1;
+	    });
+	
+	  utils.forEach(otherKeys, function otherKeysDefaultToConfig2(prop) {
+	    if (typeof config2[prop] !== 'undefined') {
+	      config[prop] = config2[prop];
+	    } else if (typeof config1[prop] !== 'undefined') {
+	      config[prop] = config1[prop];
+	    }
+	  });
+	
+	  return config;
+	};
+
+
+/***/ }),
+/* 77 */
+/*!**************************************!*\
+  !*** ./~/axios/lib/cancel/Cancel.js ***!
+  \**************************************/
+/***/ (function(module, exports) {
+
+	'use strict';
+	
+	/**
+	 * A `Cancel` is an object that is thrown when an operation is canceled.
+	 *
+	 * @class
+	 * @param {string=} message The message.
+	 */
+	function Cancel(message) {
+	  this.message = message;
+	}
+	
+	Cancel.prototype.toString = function toString() {
+	  return 'Cancel' + (this.message ? ': ' + this.message : '');
+	};
+	
+	Cancel.prototype.__CANCEL__ = true;
+	
+	module.exports = Cancel;
+
+
+/***/ }),
+/* 78 */
+/*!*******************************************!*\
+  !*** ./~/axios/lib/cancel/CancelToken.js ***!
+  \*******************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var Cancel = __webpack_require__(/*! ./Cancel */ 77);
+	
+	/**
+	 * A `CancelToken` is an object that can be used to request cancellation of an operation.
+	 *
+	 * @class
+	 * @param {Function} executor The executor function.
+	 */
+	function CancelToken(executor) {
+	  if (typeof executor !== 'function') {
+	    throw new TypeError('executor must be a function.');
+	  }
+	
+	  var resolvePromise;
+	  this.promise = new Promise(function promiseExecutor(resolve) {
+	    resolvePromise = resolve;
+	  });
+	
+	  var token = this;
+	  executor(function cancel(message) {
+	    if (token.reason) {
+	      // Cancellation has already been requested
+	      return;
+	    }
+	
+	    token.reason = new Cancel(message);
+	    resolvePromise(token.reason);
+	  });
+	}
+	
+	/**
+	 * Throws a `Cancel` if cancellation has been requested.
+	 */
+	CancelToken.prototype.throwIfRequested = function throwIfRequested() {
+	  if (this.reason) {
+	    throw this.reason;
+	  }
+	};
+	
+	/**
+	 * Returns an object that contains a new `CancelToken` and a function that, when called,
+	 * cancels the `CancelToken`.
+	 */
+	CancelToken.source = function source() {
+	  var cancel;
+	  var token = new CancelToken(function executor(c) {
+	    cancel = c;
+	  });
+	  return {
+	    token: token,
+	    cancel: cancel
+	  };
+	};
+	
+	module.exports = CancelToken;
+
+
+/***/ }),
+/* 79 */
+/*!***************************************!*\
+  !*** ./~/axios/lib/helpers/spread.js ***!
+  \***************************************/
+/***/ (function(module, exports) {
+
+	'use strict';
+	
+	/**
+	 * Syntactic sugar for invoking a function and expanding an array for arguments.
+	 *
+	 * Common use case would be to use `Function.prototype.apply`.
+	 *
+	 *  ```js
+	 *  function f(x, y, z) {}
+	 *  var args = [1, 2, 3];
+	 *  f.apply(null, args);
+	 *  ```
+	 *
+	 * With `spread` this example can be re-written.
+	 *
+	 *  ```js
+	 *  spread(function(x, y, z) {})([1, 2, 3]);
+	 *  ```
+	 *
+	 * @param {Function} callback
+	 * @returns {Function}
+	 */
+	module.exports = function spread(callback) {
+	  return function wrap(arr) {
+	    return callback.apply(null, arr);
+	  };
+	};
+
+
+/***/ }),
+/* 80 */
+/*!***********************************************!*\
+  !*** ./react-client/src/state_coordinates.js ***!
+  \***********************************************/
+/***/ (function(module, exports) {
+
+	'use strict';
+	
+	module.exports = {
+	  states: [{ name: 'AL', north: 32.7794, west: 86.8287 }, { name: 'AZ', north: 34.2744, west: 111.6602 }, { name: 'AR', north: 34.8938, west: 92.4426 }, { name: 'CA', north: 37.1841, west: 119.4696 }, { name: 'CO', north: 38.9972, west: 105.5478 }, { name: 'CT', north: 41.6219, west: 72.7273 }, { name: 'DE', north: 38.9896, west: 75.505 }, { name: 'DC', north: 38.9101, west: 77.0147 }, { name: 'FL', north: 28.6305, west: 82.4497 }, { name: 'GA', north: 32.6415, west: 83.4426 }, { name: 'ID', north: 44.3509, west: 114.613 }, { name: 'IL', north: 40.0417, west: 89.1965 }, { name: 'IN', north: 39.8942, west: 86.2816 }, { name: 'IA', north: 42.0751, west: 93.496 }, { name: 'KS', north: 38.4937, west: 98.3804 }, { name: 'KY', north: 37.5347, west: 85.3021 }, { name: 'LA', north: 31.0689, west: 91.9968 }, { name: 'ME', north: 45.3695, west: 69.2428 }, { name: 'MD', north: 39.055, west: 76.7909 }, { name: 'MA', north: 42.2596, west: 71.8083 }, { name: 'MI', north: 44.3467, west: 85.4102 }, { name: 'MN', north: 46.2807, west: 94.3053 }, { name: 'MS', north: 32.7364, west: 89.6678 }, { name: 'MO', north: 38.3566, west: 92.458 }, { name: 'MT', north: 47.0527, west: 109.6333 }, { name: 'NE', north: 41.5378, west: 99.7951 }, { name: 'NV', north: 39.3289, west: 116.6312 }, { name: 'NH', north: 43.6805, west: 71.5811 }, { name: 'NJ', north: 40.1907, west: 74.6728 }, { name: 'NM', north: 34.4071, west: 106.1126 }, { name: 'NY', north: 42.9538, west: 75.5268 }, { name: 'NC', north: 35.5557, west: 79.3877 }, { name: 'ND', north: 47.4501, west: 100.4659 }, { name: 'OH', north: 40.2862, west: 82.7937 }, { name: 'OK', north: 35.5889, west: 97.4943 }, { name: 'OR', north: 43.9336, west: 120.5583 }, { name: 'PA', north: 40.8781, west: 77.7996 }, { name: 'RI', north: 41.6762, west: 71.5562 }, { name: 'SC', north: 33.9169, west: 80.8964 }, { name: 'SD', north: 44.4443, west: 100.2263 }, { name: 'TN', north: 35.858, west: 86.3505 }, { name: 'TX', north: 31.4757, west: 99.3312 }, { name: 'UT', north: 39.3055, west: 111.6703 }, { name: 'VT', north: 44.0687, west: 72.6658 }, { name: 'VA', north: 37.5215, west: 78.8537 }, { name: 'WA', north: 47.3826, west: 120.4472 }, { name: 'WV', north: 38.6409, west: 80.6227 }, { name: 'WI', north: 44.6243, west: 89.9941 }, { name: 'WY', north: 42.9957, west: 107.5512 }]
+	};
 
 /***/ })
 /******/ ]);

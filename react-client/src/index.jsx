@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import Map from './components/map.jsx';
 import BasicDetails from './components/basicDetails.jsx';
 import DataSelection from './components/dataSelection.jsx';
-import PlayButton from './components/PlayButton.jsx';
 import Axios from 'axios';
 import { states } from './state_coordinates';
 
